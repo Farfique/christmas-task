@@ -2,6 +2,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
@@ -31,7 +32,11 @@ const baseConfig = {
             },
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            },
+            {
+              test: /\.s[ac]ss$/i,
+              use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
             {
                 test: /\.tsx?$/,
@@ -49,11 +54,12 @@ const baseConfig = {
         assetModuleFilename: '[file]',
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
-            filename: 'index.html',
-        }),
-        new CleanWebpackPlugin()
+      new MiniCssExtractPlugin({ filename: '[contenthash].css' }),
+      new HtmlWebpackPlugin({
+          template: path.resolve(__dirname, './src/index.html'),
+          filename: 'index.html',
+      }),
+      new CleanWebpackPlugin()
     ],
 };
 
