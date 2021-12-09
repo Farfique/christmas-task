@@ -1,4 +1,5 @@
 @use './colors.scss' as *;
+@use './general.scss' as *;
 
 .footer {
   width: 100vw;
@@ -27,6 +28,6 @@
 .footer__author a{
  text-decoration: none;
  color: $font-color;
- background-image: url('./assets/svg/ball.svg');
+ font-family: $base-font;
 }
 

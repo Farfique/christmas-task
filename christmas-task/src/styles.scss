@@ -1,12 +1,4 @@
-@use './css/test.scss' as *;
+
 @use './css/footer.scss';
+@use './css/general.scss';
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: $base-color;
-}

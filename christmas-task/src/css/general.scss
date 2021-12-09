@@ -1,0 +1,14 @@
+@use './colors.scss' as *;
+
+$header-font: 'Neucha', cursive;
+$base-font: 'Raleway', sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $bgr-color;
+}
