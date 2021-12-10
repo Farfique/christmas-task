@@ -1,4 +1,4 @@
-@use './general.scss' as *;
+@use './fonts.scss' as *;
 
 .app-header {
   width: 100vw;
@@ -46,12 +46,7 @@
 }
 
 .main-menu__link {
-  font-family: $header-font;
-  color: white;
-  font-weight: normal;
-  font-size: 42px;
-  line-height: 46px;
-  text-transform: uppercase;
+  @include _h1;
   text-decoration: none;
   display: inline-flex;
   align-items: center;

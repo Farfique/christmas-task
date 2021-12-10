@@ -1,4 +1,5 @@
 @use './general.scss' as *;
+@use './fonts.scss' as *;
 
 @mixin blue-card {
   /*background: radial-gradient(118.88% 606.86% at 0% 0%, rgba(36, 197, 219, 0.15) 0%, rgba(36, 197, 219, 0) 100%);*/
@@ -22,17 +23,12 @@
 
 .welcome-container__header {
   @include blue-card;
+  @include _welcome;
 
   width: 593px;
   height: 249px;
   
   word-wrap: normal;
-  text-transform: capitalize;
-  font-family: $header-font;
-  font-weight: 400;
-  font-size: 53px;
-  color: white;
-  line-height: 58px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;

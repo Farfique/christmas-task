@@ -1,0 +1,19 @@
+@use './fonts.scss' as *;
+
+.toy-info-card {
+  width: 222px;
+  height: 342px;
+}
+
+.toy-info-card__title {
+  @include _h3;
+}
+
+.toy-info-card__img {
+  height: 86px;
+  width: auto;
+}
+
+.toy-info-card__prop {
+  @include _text;
+}
