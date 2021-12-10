@@ -1,0 +1,58 @@
+@use './general.scss' as *;
+
+.app-header {
+  width: 100vw;
+  height: 100px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.app-header__left-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 50px;
+}
+
+.app-header__logo-container {
+  width: 50px;
+}
+
+.app-header__logo-container img {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  height: 100px;
+}
+
+.main-menu {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 50px;
+
+}
+
+.main-menu__item {
+  margin: auto 0;
+}
+
+.main-menu__link {
+  font-family: $header-font;
+  color: white;
+  font-weight: normal;
+  font-size: 42px;
+  line-height: 46px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
