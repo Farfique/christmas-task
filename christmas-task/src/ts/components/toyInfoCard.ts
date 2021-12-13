@@ -14,6 +14,8 @@ export default class ToyInfoCard extends Component {
     card.classList.add('card', 'toy-info-card');
     card.innerHTML = this.innerHtml();
 
+    this.root = card;
+
     return super.construct();
   }
 

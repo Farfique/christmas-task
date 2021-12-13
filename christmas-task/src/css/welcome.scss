@@ -1,4 +1,3 @@
-@use './general.scss' as *;
 @use './fonts.scss' as *;
 
 @mixin blue-card {
@@ -23,7 +22,7 @@
 
 .welcome-container__header {
   @include blue-card;
-  @include _welcome;
+  @include welcome-font;
 
   width: 593px;
   height: 249px;

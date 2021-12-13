@@ -46,7 +46,7 @@
 }
 
 .main-menu__link {
-  @include _h1;
+  @include h1-font;
   text-decoration: none;
   display: inline-flex;
   align-items: center;

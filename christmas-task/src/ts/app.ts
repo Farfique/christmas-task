@@ -1,3 +1,4 @@
+import { Data } from "./model/data";
 import GameView from "./views/gameView";
 import WelcomeView from "./views/welcomeView";
 
@@ -5,16 +6,19 @@ class App {
   root: HTMLElement;
   welcomeView : WelcomeView;
   gameView : GameView;
+  data: Data;
 
 
   constructor(){
     this.root = document.querySelector('#app');
     this.welcomeView = new WelcomeView();
-    this.gameView = new GameView();
+    this.data = new Data();
+    this.gameView = new GameView(this.data);    
   }
 
 
-  start(): void {
+  async start(): Promise<void> {
+    await this.data.init();
     this.root.append(this.welcomeView.initialize());
     this.welcomeView.subscribe((e) => {      
       this.root.append(this.gameView.initialize());
