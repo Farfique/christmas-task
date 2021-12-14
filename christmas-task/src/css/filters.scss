@@ -1,0 +1,37 @@
+@use './fonts.scss' as *;
+
+.filters-container {
+  width: 446px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+}
+
+.search-container__title {
+ 
+}
+
+.search-container__input {
+  padding: 17px;
+  padding-left: 55px;
+  width: 254px;
+  height: 36px;
+  border: 1px solid #f5f5f5;
+  font-size: 13px;
+  color: gray;
+  background-color: rgba(36, 197, 219, 0.15);
+  background-image: url('./assets/svg/search.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  outline: 0;
+}

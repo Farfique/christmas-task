@@ -1,3 +1,8 @@
+.toys-main {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+}
+
 .toys-container {
   width: 100%;
   display: flex;
@@ -6,4 +11,6 @@
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 22px;
+  overflow-y: scroll;
+  height: 90vh;
 }

@@ -1,10 +1,11 @@
 import { Data } from "../model/data";
 import Component from "./abstractComponent";
+import { Filters } from "./filterComponent";
 import ToyInfoCard from "./toyInfoCard";
 
 export default class Toys extends Component {
 
-  filters: Component;
+  filters: Filters;
   toysData: Data;
   cards: ToyInfoCard[];
   filteredCards: ToyInfoCard[];
@@ -12,6 +13,7 @@ export default class Toys extends Component {
   constructor(toysData: Data){
     super();
     this.title = 'Игрушки';
+    this.filters = new Filters();
     this.cards = [];
     this.filteredCards = [];
     this.toysData = toysData;
@@ -31,6 +33,9 @@ export default class Toys extends Component {
   construct(){
     this.root = document.createElement('main');
     this.root.classList.add('toys-main');
+
+
+    this.root.append(this.filters.construct());
 
     this.initCards();
     

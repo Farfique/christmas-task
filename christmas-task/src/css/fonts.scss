@@ -20,7 +20,7 @@ $base-font: 'Raleway', sans-serif;
   line-height: 46px;  
 }
 
-@mixin h2-font {
+.h2-font {
   @include headers-font;
   font-size: 20px;
   line-height: 22px;

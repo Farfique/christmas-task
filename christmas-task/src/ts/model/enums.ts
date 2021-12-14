@@ -1,22 +1,29 @@
 export enum Shape {
-  Bell = "Колокол",
-  Ball = "Шар",
-  Cone = "Шишка",
-  Star = "Звезда",
-  Snowflake = "Снежинка",
-  Figurine = "Фигурка"
+  Bell = "колокольчик",
+  Ball = "шар",
+  Cone = "шишка",
+  Star = "звезда",
+  Snowflake = "снежинка",
+  Figurine = "фигурка"
 }
 
 export enum Size {
-  Small = "Маленький",
-  Medium = "Средний",
-  Big = "Большой"
+  Small = "маленький",
+  Medium = "средний",
+  Big = "большой"
 }
 
 export enum Color {
-  White = "white",
-  Yellow = "yellow",
-  Red = "red",
-  Blue = "blue",
-  Green = "green"
+  White = "белый",
+  Yellow = "жёлтый",
+  Red = "красный",
+  Blue = "голубой",
+  Green = "зелёный"
+}
+
+export enum Order {
+  TitleAsc = 'По возрастанию названия',
+  TitleDesc = 'По убыванию названия',
+  YearAsc = 'По возрастанию года выпуска',
+  YearDesc = 'По убыванию года выпуска'
 }
