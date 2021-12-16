@@ -51,6 +51,12 @@ $base-font: 'Raleway', sans-serif;
   line-height: 22px;
 }
 
+.h4-font {
+  @include h4-font;
+}
+
+
+
 @mixin text {
   @include text-font;
   font-size: 16px;

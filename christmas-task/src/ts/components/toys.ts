@@ -13,7 +13,7 @@ export default class Toys extends Component {
   constructor(toysData: Data){
     super();
     this.title = 'Игрушки';
-    this.filters = new Filters();
+    this.filters = new Filters(toysData);
     this.cards = [];
     this.filteredCards = [];
     this.toysData = toysData;

@@ -4,7 +4,7 @@ export class Search extends Component {
   input: HTMLInputElement;
   
   constructor(){
-    super();
+    super('Поиск');
   }
 
   construct(): HTMLElement {
@@ -13,7 +13,7 @@ export class Search extends Component {
 
     const title = document.createElement('h2');
     title.classList.add('search-container__title', 'h2-font');
-    title.innerText = 'Поиск';
+    title.innerText = this.title;
 
     this.input = document.createElement('input') as HTMLInputElement;
     this.input.classList.add('search-container__input');

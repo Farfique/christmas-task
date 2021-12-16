@@ -1,6 +1,7 @@
 @use './fonts.scss' as *;
 
 .filters-container {
+  padding-left: 40px;
   width: 446px;
   display: flex;
   flex-direction: column;
@@ -34,4 +35,8 @@
   background-repeat: no-repeat;
   background-position: left center;
   outline: 0;
+}
+
+.slider-container {
+  width: 90%;
 }

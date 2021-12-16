@@ -13,7 +13,7 @@
     "url": ""
   },
   "author": "Anna Mikhailova",
-  "license": "ISC" ,
+  "license": "ISC",
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
@@ -29,5 +29,8 @@
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "nouislider": "^15.5.0"
   }
 }

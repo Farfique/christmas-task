@@ -6,7 +6,7 @@ export class Sort extends Component {
   selectedOption: string;
   
   constructor(){
-    super();
+    super('Сортировать');
   }
 
   construct(): HTMLElement {
@@ -15,7 +15,7 @@ export class Sort extends Component {
 
     const title = document.createElement('h2');
     title.classList.add('sort-container__title', 'h2-font');
-    title.innerText = 'Сортировать';
+    title.innerText = this.title;
 
 
     this.select = document.createElement('select');

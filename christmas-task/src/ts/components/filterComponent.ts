@@ -1,111 +1,41 @@
+import { FilterCategories } from "../model/categories";
+import { Data } from "../model/data";
 import { Filter } from "../model/filter";
 import Component from "./abstractComponent";
+import { AbstractFilter } from "./filters/abstractFilter";
+import { Categories } from "./filters/categories";
+import { DoubleSlider } from "./filters/doubleSlider";
 import { Search } from "./filters/search";
 import { Sort } from "./filters/sort";
+import ToyInfoCard from "./toyInfoCard";
 
 export class Filters extends Component {
   filters: Filter;
-  categories: {
-    all: boolean,
-    year: boolean,
-    count: boolean,
-    shape: boolean,
-    color: boolean,
-    size: boolean,
-    onlyFavorites: boolean
-  };
+  filteredCards: ToyInfoCard[];
+  categories: Categories;
   search: Search;
   sort: Sort;
+  toysData: Data;
+  filterComponentsObject: {
+    year?: DoubleSlider,
+    count?: DoubleSlider,
+    shape?: AbstractFilter,
+    color?: AbstractFilter,
+    size?: AbstractFilter,
+    onlyFavorites?: AbstractFilter
+  }
 
-  constructor(){
+
+  constructor(toysData: Data){
     super();
     this.filters = {};
-    this.initCategories();
+    this.toysData = toysData;
     this.search = new Search();
     this.sort = new Sort();
-  }
-
-  initCategories(): void {
-    this.categories = {
-      all: true,
-      year: true,
-      count: true,
-      shape: true,
-      color: true,
-      size: true,
-      onlyFavorites: true
-    }
-  }
-
-  drawCategories(ul: HTMLUListElement): void {
-    //TODO? clean ul
-
-    let labelCollection = [] as HTMLElement[];
-
-    for (let key of Object.keys(this.categories)){
-      let li = this.drawCheckbox(key, this.categories[key]);
-      labelCollection.push(li);
-      
-      let input = li.querySelector('input') as HTMLInputElement;
-      if (this.categories.all && !input.classList.contains(`categories__checkbox-all`)){
-        li.style.display = "none";
-      }
-
-      input.addEventListener('change', () => {
-        this.categories[key] = input.checked;
-        
-        //TODO: save in localStorage
-
-        if (input.classList.contains(`categories__checkbox-all`)){
-          if (input.checked){
-            for (let key of Object.keys(this.categories)){
-              this.categories[key] = true;
-            }
-            labelCollection.forEach((listItem) => {
-              let listItemInput = listItem.querySelector('input') as HTMLInputElement;
-              if (!listItemInput.classList.contains(`categories__checkbox-all`)){
-                listItemInput.checked = true;
-                listItemInput.dispatchEvent(new Event('change'));
-                listItem.style.display = "none";
-              }              
-            });
-          }
-          else {
-            labelCollection.forEach((listItem) => {
-              listItem.style.display = "";
-            })
-          }
-        }
-      });
-
-      ul.append(li);
-    }
-  }
-
-  drawCheckbox(key: string, checked: boolean) : HTMLLIElement{
-    let liCheckbox = document.createElement('li');
-    liCheckbox.innerHTML = 
-    `<label class="filters-container__categories__label categories__label-${key}">
-    <input type="checkbox" class="filters-container__categories__checkbox  categories__checkbox-${key}" checked="${checked}"><span class="filters-container__categories__title">${key}</span>
-    </label>`;
-    return liCheckbox;
-  }
-
-  drawCategoriesContainer(): HTMLElement {
-    const categoriesContainer = document.createElement('div');
-    categoriesContainer.classList.add('categories-container');
-
-    const title = document.createElement('h2');
-    title.classList.add('categories-container__title', 'h2-font');
-    title.innerText = 'Категории';
-
-    const ulCategories = document.createElement('ul');
-    ulCategories.classList.add('filters-container__categories');
-    this.drawCategories(ulCategories);
-
-    categoriesContainer.append(title, ulCategories);
-
-    return categoriesContainer;
+    this.categories = new Categories();
+    this.filterComponentsObject = {};
+    this.filterComponentsObject.count = new DoubleSlider('count', this.toysData.rangeCount[0], this.toysData.rangeCount[1]);
+    this.filterComponentsObject.year = new DoubleSlider('year', this.toysData.rangeYear[0], this.toysData.rangeYear[1]);
   }
 
   construct() : HTMLElement {
@@ -115,7 +45,11 @@ export class Filters extends Component {
     this.root.append(this.search.construct());
     this.root.append(this.sort.construct());
     
-    this.root.append(this.drawCategoriesContainer());
+    this.root.append(this.categories.construct());
+    this.root.append(this.filterComponentsObject.count.construct());
+    this.root.append(this.filterComponentsObject.year.construct());
+
+    this.updateFilters();
 
     this.subscribe();
 
@@ -124,11 +58,35 @@ export class Filters extends Component {
   }
 
   subscribe(): void {
+    this.root.addEventListener('categoriesChangeEvent', (event: CustomEvent) => {
+      console.log("I got categories change, categories value = ", this.categories.categories);
+      this.updateFilters();
+    });
     this.root.addEventListener('searchChange', (event: CustomEvent) => {
       console.log("I got search change, it's value = ", event.detail.value);
     });
     this.root.addEventListener('sortChange', (event: CustomEvent) => {
       console.log("I got sort change, it's value = ", event.detail.value);
     });
+    this.root.addEventListener('countSliderChange', (event: CustomEvent) => {
+      console.log("I got count slider change, it's value = ", event.detail.value);
+    });
+    this.root.addEventListener('yearSliderChange', (event: CustomEvent) => {
+      console.log("I got year slider change, it's value = ", event.detail.value);
+    });
+  }
+
+  updateFilters(){
+    for (let key of Object.keys(this.categories.categories)){
+      if (key !== 'all'){
+        if (this.categories.categories[key]){
+          this.filterComponentsObject[key].show();
+        }
+        else {
+          this.filterComponentsObject[key].reset();
+          this.filterComponentsObject[key].hide();
+        }
+      }
+    }
   }
 }

@@ -13,12 +13,13 @@ class App {
     this.root = document.querySelector('#app');
     this.welcomeView = new WelcomeView();
     this.data = new Data();
-    this.gameView = new GameView(this.data);    
+    
   }
 
 
   async start(): Promise<void> {
     await this.data.init();
+    this.gameView = new GameView(this.data);    
     this.root.append(this.welcomeView.initialize());
     this.welcomeView.subscribe((e) => {      
       this.root.append(this.gameView.initialize());

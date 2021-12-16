@@ -22,8 +22,18 @@ export enum Color {
 }
 
 export enum Order {
-  TitleAsc = 'По возрастанию названия',
-  TitleDesc = 'По убыванию названия',
-  YearAsc = 'По возрастанию года выпуска',
-  YearDesc = 'По убыванию года выпуска'
+  TitleAsc = 'По названию (возр.)',
+  TitleDesc = 'По названию (убыв.)',
+  YearAsc = 'По году (возр.)',
+  YearDesc = 'По году (убыв.)'
+}
+
+export enum FilterCategoriesNames {
+  all = 'Все',
+  year = 'Год приобретения',
+  count = 'Количество экземпляров',
+  //shape = 'Форма',
+  //color = 'Цвет',
+  //size = 'Размер',
+  //onlyFavorites: 'Только любимые' 
 }

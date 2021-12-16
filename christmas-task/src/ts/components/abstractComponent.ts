@@ -2,11 +2,11 @@ export default class Component {
   root: HTMLElement;
   title: string;
 
-  constructor(){
-    this.title = 'No title';
+  constructor(title = 'No title'){
+    this.title = title;
   }
 
-  construct() : HTMLElement {
+  construct() : HTMLElement { //must create an element and assign to this.root!
     return this.root;
   }
 

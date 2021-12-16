@@ -1,0 +1,38 @@
+@use './fonts.scss' as *;
+
+.noUi-handle {
+  border: 2px solid rgba(36, 197, 219, 0.26);
+  border-radius: 50%;
+  background: linear-gradient(
+0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), radial-gradient(57.23% 248.2% at 107.17% 104.02%, rgba(34, 153, 235, 0.92) 0%, rgba(34, 153, 235, 0.07) 100%), radial-gradient(104.22% 230.94% at -4.22% 0%, #24C5DB 3.62%, rgba(36, 197, 219, 0.26) 55.1%);
+  cursor: default;
+  /* box-shadow: inset 0 0 1px #fff, inset 0 1px 7px #ebebeb, 0 3px 6px -3px #bbb; */
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 16px;
+  height: 16px;
+  right: -8px;
+  top: -7px;
+}
+
+.noUi-connect {
+  background: rgba(36, 197, 219, 1);
+}
+
+.noUi-horizontal {
+  height: 4px;
+}
+
+.noUi-marker {
+  display: none;
+}
+
+.noUi-handle:before, 
+.noUi-handle:after {
+  display: none;
+}
+
+.noUi-value {
+  @include h4-font;
+}
