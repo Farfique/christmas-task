@@ -1,6 +1,7 @@
 import { FilterCategories } from "../model/categories";
 import { Data } from "../model/data";
 import { Filter } from "../model/filter";
+import { FilteredColors } from "../model/filteredColors";
 import Component from "./abstractComponent";
 import { AbstractFilter } from "./filters/abstractFilter";
 import { Categories } from "./filters/categories";
@@ -105,8 +106,8 @@ export class FiltersComponent extends Component {
       this.root.dispatchEvent(this.filtersChangeEvent);
     });
     this.root.addEventListener('colorFilterEvent', () => {
-      console.log("I got color filter event change, it's value = ", this.filterComponentsObject.color.filteredColors);
-      this.filters.color = this.filterComponentsObject.color.filteredColors;
+      console.log("I got color filter event change, it's value = ", this.filterComponentsObject.color.filter);
+      this.filters.color = this.filterComponentsObject.color.filter as FilteredColors;
       this.root.dispatchEvent(this.filtersChangeEvent);
     });
   }
