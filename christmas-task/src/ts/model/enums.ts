@@ -1,38 +1,38 @@
 export enum Shape {
-  Bell = "колокольчик",
-  Ball = "шар",
-  Cone = "шишка",
-  Star = "звезда",
-  Snowflake = "снежинка",
-  Figurine = "фигурка"
+  bell = "колокольчик",
+  ball = "шар",
+  cone = "шишка",
+  star = "звезда",
+  snowflake = "снежинка",
+  figurine = "фигурка"
 }
 
 export enum Size {
-  Small = "маленький",
-  Medium = "средний",
-  Big = "большой"
+  small = "маленький",
+  medium = "средний",
+  big = "большой"
 }
 
 export enum Color {
-  White = "белый",
-  Yellow = "жёлтый",
-  Red = "красный",
-  Blue = "голубой",
-  Green = "зелёный"
+  white = "белый",
+  yellow = "жёлтый",
+  red = "красный",
+  blue = "голубой",
+  green = "зелёный"
 }
 
 export enum Order {
-  TitleAsc = 'По названию (возр.)',
-  TitleDesc = 'По названию (убыв.)',
-  YearAsc = 'По году (возр.)',
-  YearDesc = 'По году (убыв.)'
+  titleAsc = 'По названию (возр.)',
+  titleDesc = 'По названию (убыв.)',
+  yearAsc = 'По году (возр.)',
+  yearDesc = 'По году (убыв.)'
 }
 
 export enum FilterCategoriesNames {
   all = 'Все',
   year = 'Год приобретения',
   count = 'Количество экземпляров',
-  //shape = 'Форма',
+  shape = 'Форма',
   //color = 'Цвет',
   //size = 'Размер',
   //onlyFavorites: 'Только любимые' 

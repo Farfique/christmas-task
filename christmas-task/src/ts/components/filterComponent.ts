@@ -6,6 +6,7 @@ import { AbstractFilter } from "./filters/abstractFilter";
 import { Categories } from "./filters/categories";
 import { DoubleSlider } from "./filters/doubleSlider";
 import { Search } from "./filters/search";
+import { ShapeFilter } from "./filters/shape";
 import { Sort } from "./filters/sort";
 import ToyInfoCard from "./toyInfoCard";
 
@@ -19,7 +20,7 @@ export class Filters extends Component {
   filterComponentsObject: {
     year?: DoubleSlider,
     count?: DoubleSlider,
-    shape?: AbstractFilter,
+    shape?: ShapeFilter,
     color?: AbstractFilter,
     size?: AbstractFilter,
     onlyFavorites?: AbstractFilter
@@ -36,6 +37,7 @@ export class Filters extends Component {
     this.filterComponentsObject = {};
     this.filterComponentsObject.count = new DoubleSlider('count', this.toysData.rangeCount[0], this.toysData.rangeCount[1]);
     this.filterComponentsObject.year = new DoubleSlider('year', this.toysData.rangeYear[0], this.toysData.rangeYear[1]);
+    this.filterComponentsObject.shape = new ShapeFilter();
   }
 
   construct() : HTMLElement {
@@ -46,6 +48,7 @@ export class Filters extends Component {
     this.root.append(this.sort.construct());
     
     this.root.append(this.categories.construct());
+    this.root.append(this.filterComponentsObject.shape.construct());
     this.root.append(this.filterComponentsObject.count.construct());
     this.root.append(this.filterComponentsObject.year.construct());
 
@@ -74,6 +77,9 @@ export class Filters extends Component {
     this.root.addEventListener('yearSliderChange', (event: CustomEvent) => {
       console.log("I got year slider change, it's value = ", event.detail.value);
     });
+    this.root.addEventListener('shapeFilterEvent', () => {
+      console.log("I got shape filter event change, it's value = ", this.filterComponentsObject.shape.filteredShapes);
+    })
   }
 
   updateFilters(){

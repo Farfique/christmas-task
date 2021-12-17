@@ -1,0 +1,43 @@
+@use './fonts.scss' as *;
+
+.shape-filter-container{
+
+}
+
+.shape-filter-container__list{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 35px;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+}
+
+.shape-filter-container__item{
+  list-style: none;
+}
+
+.shape-icon{
+
+}
+
+.shape-icon__input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  margin: 0;
+}
+
+.shape-icon__image{
+  width: 42px;
+  height: 42px;
+
+}
+
+.shape-icon__title {
+  @include text;
+}

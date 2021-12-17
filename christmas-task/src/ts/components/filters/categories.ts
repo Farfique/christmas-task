@@ -34,7 +34,7 @@ export class Categories extends Component {
       all: true,
       year: true,
       count: true,
-      //shape: true,
+      shape: true,
       //color: true,
       //size: true,
       //onlyFavorites: true
