@@ -1,10 +1,10 @@
 @use './fonts.scss' as *;
 
-.shape-filter-container{
+.color-filter-container{
 
 }
 
-.shape-filter-container__list{
+.color-filter-container__list{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -17,11 +17,11 @@
 
 }
 
-.shape-filter-container__item{
+.color-filter-container__item{
   list-style: none;
 }
 
-.shape-icon {
+.color-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,19 +29,15 @@
   cursor: pointer;
 }
 
-.shape-icon__input {
+.color-icon__input {
   width: 0;
   height: 0;
   visibility: hidden;
   margin: 0;
 }
 
-.shape-icon__image{
-  width: 35px;
-  height: 35px;
-
-}
-
-.shape-icon__title {
-  @include micro-text;
+.color-icon__color {
+  content: "";
+  width: 25px;
+  height: 25px;
 }

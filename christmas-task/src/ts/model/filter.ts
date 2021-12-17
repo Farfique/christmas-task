@@ -1,4 +1,6 @@
 import { Color, Shape, Size, Order } from "./enums";
+import { FilteredColors } from "./filteredColors";
+import { FilteredShapes } from "./filteredShapes";
 
 export type Filter = {
   str?: string,
@@ -6,8 +8,8 @@ export type Filter = {
   countTo?: number,
   yearFrom?: number,
   yearTo?: number
-  shape?: Shape[],
-  color?: Color[],
+  shape?: FilteredShapes,
+  color?: FilteredColors,
   size?: Size[],
   onlyFavorites?: boolean,
   order?: Order

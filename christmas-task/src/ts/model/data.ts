@@ -12,8 +12,7 @@ export class Data {
   async init(): Promise<Toy[]>{
     try {
       let result = await fetch('assets/data/data.json');
-      let info = await result.json();
-      console.log("info = ", info.data);
+      let info = await result.json() as {data: Toy[]};
       this.toys.push(...info.data);
       console.log("toys = ", this.toys);
       this.getRanges();

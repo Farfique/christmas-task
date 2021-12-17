@@ -35,7 +35,7 @@ export class Categories extends Component {
       year: true,
       count: true,
       shape: true,
-      //color: true,
+      color: true,
       //size: true,
       //onlyFavorites: true
     }
@@ -91,10 +91,11 @@ export class Categories extends Component {
   }
 
   drawCheckbox(key: string, checked: boolean) : HTMLLIElement{
+    let checkedString = checked? 'checked': '';
     let liCheckbox = document.createElement('li');
     liCheckbox.innerHTML = 
     `<label class="filters-container__categories__label categories__label-${key}">
-    <input type="checkbox" class="filters-container__categories__checkbox  categories__checkbox-${key}" checked="${checked}"><span class="filters-container__categories__title">${FilterCategoriesNames[key]}</span>
+    <input type="checkbox" class="filters-container__categories__checkbox  categories__checkbox-${key}" ${checkedString}><span class="filters-container__categories__title">${FilterCategoriesNames[key]}</span>
     </label>`;
     return liCheckbox;
   }

@@ -10,6 +10,8 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: 12px;
+
+  position: relative;
 }
 
 .toy-info-card__title {
@@ -25,4 +27,32 @@
 
 .toy-info-card__prop {
   @include text;
+}
+
+.toy-info-card__favorite {
+  position: absolute;
+  bottom: 26px;
+  right: 26px;
+  cursor: pointer;
+}
+
+.toy-info-card__favorite-checkbox {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  margin: 0;
+}
+
+.toy-info-card__favorite-icon {
+  content: "";
+  width: 30px;
+  height: 30px;
+  background-image: url('./assets/svg/heart-plus-outline.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.toy-info-card__favorite-checkbox:checked ~ .toy-info-card__favorite-icon {
+  background-image: url('./assets/svg/heart.svg');
 }

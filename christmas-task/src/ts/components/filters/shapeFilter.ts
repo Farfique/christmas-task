@@ -1,16 +1,9 @@
-import { FilterCategoriesNames } from "../../model/enums";
 import { AbstractFilter } from "./abstractFilter";
 import { Shape } from "../../model/enums";
+import { FilteredShapes } from "../../model/filteredShapes";
 
 export class ShapeFilter extends AbstractFilter {
-  filteredShapes: {
-    bell : boolean,
-    ball : boolean,
-    cone : boolean,
-    star : boolean,
-    snowflake : boolean,
-    figurine : boolean
-  };
+  filteredShapes: FilteredShapes;
   shapeFilterEvent: CustomEvent;
 
   constructor(){
@@ -62,16 +55,17 @@ export class ShapeFilter extends AbstractFilter {
 
 
   drawCheckbox(key: string, checked: boolean): HTMLLIElement {
-  const li = document.createElement('li');
-  li.classList.add('shape-filter-container__item');
-  li.innerHTML = 
-  `<label class="shape-filter-container__item_label shape-icon">
-  <input class="shape-filter-container__item_checkbox shape-icon__input" value="${key}" type="checkbox" checked="${checked}">
-  <img class="shape-filter-container__item_icon shape-icon__image" src="${this.getImgUrl(key)}">
-  <div class="shape-filter-container__item_title shape-icon__title">${Shape[key]}</div>
-  </label>`
+    let checkedString = checked? 'checked': '';
+    const li = document.createElement('li');
+    li.classList.add('shape-filter-container__item');
+    li.innerHTML = 
+    `<label class="shape-filter-container__item_label shape-icon">
+    <input class="shape-filter-container__item_checkbox shape-icon__input" value="${key}" type="checkbox" ${checkedString}>
+    <img class="shape-filter-container__item_icon shape-icon__image" src="${this.getImgUrl(key)}">
+    <div class="shape-filter-container__item_title shape-icon__title">${Shape[key]}</div>
+    </label>`
 
-  return li;
+    return li;
   }
 
   getImgUrl(key: string): string {

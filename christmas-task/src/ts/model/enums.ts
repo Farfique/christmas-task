@@ -17,7 +17,7 @@ export enum Color {
   white = "белый",
   yellow = "жёлтый",
   red = "красный",
-  blue = "голубой",
+  blue = "синий",
   green = "зелёный"
 }
 
@@ -33,7 +33,8 @@ export enum FilterCategoriesNames {
   year = 'Год приобретения',
   count = 'Количество экземпляров',
   shape = 'Форма',
-  //color = 'Цвет',
+  color = 'Цвет',
   //size = 'Размер',
   //onlyFavorites: 'Только любимые' 
 }
+

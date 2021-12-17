@@ -62,3 +62,9 @@ $base-font: 'Raleway', sans-serif;
   font-size: 16px;
   line-height: 19px;
 }
+
+@mixin micro-text {
+  @include text-font;
+  font-size: 13px;
+  line-height: 15px;
+}

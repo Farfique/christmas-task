@@ -3,7 +3,7 @@ export type FilterCategories = {
   year: boolean,
   count: boolean,
   shape: boolean,
-  //color: boolean,
+  color: boolean,
   //size: boolean,
   //onlyFavorites: boolean 
 }
