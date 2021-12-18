@@ -1,0 +1,41 @@
+@use './fonts.scss' as *;
+
+.size-filter-container{
+
+}
+
+.size-filter-container__list{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+}
+
+.size-filter-container__item{
+  list-style: none;
+}
+
+.size-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.size-icon__input {
+  width: 10px;
+  height: 10px;
+  margin: 0;
+}
+
+.size-icon__title {
+  @include micro-text;
+}

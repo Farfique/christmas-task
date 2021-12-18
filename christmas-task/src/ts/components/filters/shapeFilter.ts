@@ -1,6 +1,4 @@
-import { AbstractFilter } from "./abstractFilter";
 import { Shape } from "../../model/enums";
-import { FilteredShapes } from "../../model/filteredShapes";
 import { AbstractCheckboxFilter } from "./abstractCheckBoxFilter";
 
 export class ShapeFilter extends AbstractCheckboxFilter {

@@ -3,6 +3,7 @@ import { Data } from "../model/data";
 import { Filter } from "../model/filter";
 import { FilteredColors } from "../model/filteredColors";
 import { FilteredShapes } from "../model/filteredShapes";
+import { FilteredSizes } from "../model/filteredSizes";
 import Component from "./abstractComponent";
 import { AbstractFilter } from "./filters/abstractFilter";
 import { Categories } from "./filters/categories";
@@ -10,6 +11,7 @@ import { ColorFilter } from "./filters/colorFilter";
 import { DoubleSlider } from "./filters/doubleSliderFilter";
 import { Search } from "./filters/search";
 import { ShapeFilter } from "./filters/shapeFilter";
+import { SizeFilter } from "./filters/sizeFilter";
 import { Sort } from "./filters/sort";
 import ToyInfoCard from "./toyInfoCard";
 
@@ -25,7 +27,7 @@ export class FiltersComponent extends Component {
     count?: DoubleSlider,
     shape?: ShapeFilter,
     color?: ColorFilter,
-    size?: AbstractFilter,
+    size?: SizeFilter,
     onlyFavorites?: AbstractFilter
   }
   filtersChangeEvent: CustomEvent;
@@ -44,6 +46,7 @@ export class FiltersComponent extends Component {
     this.filterComponentsObject.year = new DoubleSlider('year', this.toysData.rangeYear[0], this.toysData.rangeYear[1]);
     this.filterComponentsObject.shape = new ShapeFilter();
     this.filterComponentsObject.color = new ColorFilter();
+    this.filterComponentsObject.size = new SizeFilter();
   }
 
   construct() : HTMLElement {
@@ -58,6 +61,7 @@ export class FiltersComponent extends Component {
     this.root.append(this.filterComponentsObject.count.construct());
     this.root.append(this.filterComponentsObject.year.construct());
     this.root.append(this.filterComponentsObject.color.construct());
+    this.root.append(this.filterComponentsObject.size.construct());
 
     this.updateFilters();
 
@@ -109,6 +113,11 @@ export class FiltersComponent extends Component {
     this.root.addEventListener('colorFilterEvent', () => {
       console.log("I got color filter event change, it's value = ", this.filterComponentsObject.color.filter);
       this.filters.color = this.filterComponentsObject.color.filter as FilteredColors;
+      this.root.dispatchEvent(this.filtersChangeEvent);
+    });
+    this.root.addEventListener('sizeFilterEvent', () => {
+      console.log("I got size filter event change, it's value = ", this.filterComponentsObject.size.filter);
+      this.filters.size = this.filterComponentsObject.size.filter as FilteredSizes;
       this.root.dispatchEvent(this.filtersChangeEvent);
     });
   }

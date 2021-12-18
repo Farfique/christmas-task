@@ -1,9 +1,10 @@
 import { AbstractFilter } from "./abstractFilter";
 import { FilteredColors } from "../../model/filteredColors";
 import { FilteredShapes } from "../../model/filteredShapes";
+import { FilteredSizes } from "../../model/filteredSizes";
 
 export class AbstractCheckboxFilter extends AbstractFilter {
-  filter: FilteredColors | FilteredShapes;
+  filter: FilteredColors | FilteredShapes | FilteredSizes;
   filterEvent: CustomEvent;
   enumKeys: string[];
   innerHTML: (k: string, ch: string) => string;

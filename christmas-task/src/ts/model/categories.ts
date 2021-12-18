@@ -4,6 +4,6 @@ export type FilterCategories = {
   count: boolean,
   shape: boolean,
   color: boolean,
-  //size: boolean,
+  size: boolean,
   //onlyFavorites: boolean 
 }

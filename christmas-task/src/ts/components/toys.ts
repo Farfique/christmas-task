@@ -1,5 +1,5 @@
 import { Data } from "../model/data";
-import { Color, Shape } from "../model/enums";
+import { Color, Shape, Size } from "../model/enums";
 import Component from "./abstractComponent";
 import { FiltersComponent } from "./filterComponent";
 import ToyInfoCard from "./toyInfoCard";
@@ -100,6 +100,12 @@ export default class Toys extends Component {
               let color = card.toyInfo.color;
               let colorKey = Object.keys(Color).filter(key => Color[key] == color)[0];
               currentValue = this.filters.filters[filterKey][colorKey];
+              break;
+            case 'size':
+              let size = card.toyInfo.size;
+              let sizeKey = Object.keys(Size).filter(key => Size[key] == size)[0];
+              currentValue = this.filters.filters[filterKey][sizeKey];
+              break;
           }
         }
 

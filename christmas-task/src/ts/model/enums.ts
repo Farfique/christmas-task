@@ -8,7 +8,7 @@ export enum Shape {
 }
 
 export enum Size {
-  small = "маленький",
+  small = "малый",
   medium = "средний",
   big = "большой"
 }
@@ -34,7 +34,7 @@ export enum FilterCategoriesNames {
   count = 'Количество экземпляров',
   shape = 'Форма',
   color = 'Цвет',
-  //size = 'Размер',
+  size = 'Размер',
   //onlyFavorites: 'Только любимые' 
 }
 
