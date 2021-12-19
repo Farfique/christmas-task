@@ -37,7 +37,7 @@ export class Categories extends Component {
       shape: true,
       color: true,
       size: true,
-      //onlyFavorites: true
+      onlyFavorites: true
     }
   }
 
@@ -95,7 +95,7 @@ export class Categories extends Component {
     let liCheckbox = document.createElement('li');
     liCheckbox.innerHTML = 
     `<label class="filters-container__categories__label categories__label-${key}">
-    <input type="checkbox" class="filters-container__categories__checkbox  categories__checkbox-${key}" ${checkedString}><span class="filters-container__categories__title">${FilterCategoriesNames[key]}</span>
+    <input type="checkbox" class="filters-container__categories__checkbox  checkbox categories__checkbox-${key}" ${checkedString}><span class="filters-container__categories__title">${FilterCategoriesNames[key]}</span>
     </label>`;
     return liCheckbox;
   }

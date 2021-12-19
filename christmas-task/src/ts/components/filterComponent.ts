@@ -9,6 +9,7 @@ import { AbstractFilter } from "./filters/abstractFilter";
 import { Categories } from "./filters/categories";
 import { ColorFilter } from "./filters/colorFilter";
 import { DoubleSlider } from "./filters/doubleSliderFilter";
+import { FavoritesFilter } from "./filters/favoritesFilter";
 import { Search } from "./filters/search";
 import { ShapeFilter } from "./filters/shapeFilter";
 import { SizeFilter } from "./filters/sizeFilter";
@@ -28,7 +29,7 @@ export class FiltersComponent extends Component {
     shape?: ShapeFilter,
     color?: ColorFilter,
     size?: SizeFilter,
-    onlyFavorites?: AbstractFilter
+    onlyFavorites?: FavoritesFilter
   }
   filtersChangeEvent: CustomEvent;
 
@@ -41,12 +42,14 @@ export class FiltersComponent extends Component {
     this.search = new Search();
     this.sort = new Sort();
     this.categories = new Categories();
-    this.filterComponentsObject = {};
-    this.filterComponentsObject.count = new DoubleSlider('count', this.toysData.rangeCount[0], this.toysData.rangeCount[1]);
-    this.filterComponentsObject.year = new DoubleSlider('year', this.toysData.rangeYear[0], this.toysData.rangeYear[1]);
-    this.filterComponentsObject.shape = new ShapeFilter();
-    this.filterComponentsObject.color = new ColorFilter();
-    this.filterComponentsObject.size = new SizeFilter();
+    this.filterComponentsObject = {
+      shape: new ShapeFilter(),
+      count: new DoubleSlider('count', this.toysData.rangeCount[0], this.toysData.rangeCount[1]),
+      year: new DoubleSlider('year', this.toysData.rangeYear[0], this.toysData.rangeYear[1]),   
+      color: new ColorFilter(),
+      size: new SizeFilter(),
+      onlyFavorites: new FavoritesFilter()
+    };
   }
 
   construct() : HTMLElement {
@@ -57,11 +60,10 @@ export class FiltersComponent extends Component {
     this.root.append(this.sort.construct());
     
     this.root.append(this.categories.construct());
-    this.root.append(this.filterComponentsObject.shape.construct());
-    this.root.append(this.filterComponentsObject.count.construct());
-    this.root.append(this.filterComponentsObject.year.construct());
-    this.root.append(this.filterComponentsObject.color.construct());
-    this.root.append(this.filterComponentsObject.size.construct());
+    
+    for (let value of Object.values(this.filterComponentsObject)){
+      this.root.append(value.construct());
+    }
 
     this.updateFilters();
 
@@ -118,6 +120,11 @@ export class FiltersComponent extends Component {
     this.root.addEventListener('sizeFilterEvent', () => {
       console.log("I got size filter event change, it's value = ", this.filterComponentsObject.size.filter);
       this.filters.size = this.filterComponentsObject.size.filter as FilteredSizes;
+      this.root.dispatchEvent(this.filtersChangeEvent);
+    });
+    this.root.addEventListener('favoritesFilterEvent', () => {
+      console.log("I got favorites filter event change, it's value = ", this.filterComponentsObject.onlyFavorites.filter);
+      this.filters.onlyFavorites = this.filterComponentsObject.onlyFavorites.filter as boolean;
       this.root.dispatchEvent(this.filtersChangeEvent);
     });
   }

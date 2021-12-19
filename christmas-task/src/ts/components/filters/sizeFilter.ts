@@ -30,7 +30,7 @@ export class SizeFilter extends AbstractCheckboxFilter {
 
   drawLiInnerHtml(key: string, checkedString: string): string {
     return `<label class="size-filter-container__item_label size-icon">
-    <input class="size-filter-container__item_checkbox size-icon__input" value="${key}" type="checkbox" ${checkedString}>
+    <input class="size-filter-container__item_checkbox size-icon__input checkbox" value="${key}" type="checkbox" ${checkedString}>
     <div class="size-filter-container__item_title size-icon__title">${Size[key]}</div>
     </label>`
   }

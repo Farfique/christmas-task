@@ -16,7 +16,7 @@ export class Search extends Component {
     title.innerText = this.title;
 
     this.input = document.createElement('input') as HTMLInputElement;
-    this.input.classList.add('search-container__input');
+    this.input.classList.add('search-container__input', 'input-theme');
     this.input.placeholder = 'Название игрушки';
 
     this.root.append(title, this.input);
@@ -27,7 +27,7 @@ export class Search extends Component {
   }
 
   subscribe(): void {
-    this.input.addEventListener('change', () => {
+    this.input.addEventListener('input', () => {
         let inputEvent = new CustomEvent('searchChange', {bubbles: true, detail: {
           value: this.input.value
         }});

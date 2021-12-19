@@ -77,7 +77,7 @@ export default class Toys extends Component {
         if (this.filters.filters[filterKey] !== null) {
           switch (filterKey){
             case 'str':           
-              currentValue = card.toyInfo.name.includes(this.filters.filters[filterKey]);
+              currentValue = card.toyInfo.name.toLowerCase().includes(this.filters.filters[filterKey].toLowerCase());
               break;
             case 'countFrom':
               currentValue = card.toyInfo.count >= this.filters.filters[filterKey];
@@ -106,6 +106,10 @@ export default class Toys extends Component {
               let sizeKey = Object.keys(Size).filter(key => Size[key] == size)[0];
               currentValue = this.filters.filters[filterKey][sizeKey];
               break;
+            case 'onlyFavorites':
+              currentValue = this.filters.filters[filterKey]? card.toyInfo.favorite : true;
+              break;
+
           }
         }
 

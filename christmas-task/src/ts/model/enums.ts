@@ -35,6 +35,6 @@ export enum FilterCategoriesNames {
   shape = 'Форма',
   color = 'Цвет',
   size = 'Размер',
-  //onlyFavorites: 'Только любимые' 
+  onlyFavorites = 'Только любимые' 
 }
 

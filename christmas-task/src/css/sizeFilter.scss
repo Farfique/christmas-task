@@ -1,4 +1,5 @@
 @use './fonts.scss' as *;
+@use './welcome.scss' as *;
 
 .size-filter-container{
 
@@ -16,7 +17,9 @@
   list-style: none;
 
 }
-
+.filter-container__title {
+  margin-bottom: 15px;
+}
 .size-filter-container__item{
   list-style: none;
 }
@@ -31,8 +34,7 @@
 }
 
 .size-icon__input {
-  width: 10px;
-  height: 10px;
+  @include blue-card;
   margin: 0;
 }
 

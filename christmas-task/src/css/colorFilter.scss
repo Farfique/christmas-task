@@ -21,11 +21,14 @@
   list-style: none;
 }
 
+.color-filter-container__title{
+  margin-bottom: 15px;
+}
+
 .color-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
   cursor: pointer;
 }
 
@@ -34,6 +37,10 @@
   height: 0;
   visibility: hidden;
   margin: 0;
+}
+
+.color-icon__input:checked ~ div {
+  box-shadow: #00ffff91 0 0 6px 2px;
 }
 
 .color-icon__color {

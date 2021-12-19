@@ -1,0 +1,16 @@
+@use './welcome' as *;
+@use './fonts' as *;
+
+.sort-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.sort-container__select {
+  @include blue-card;
+  @include micro-text;
+  width: 200px;
+  height: 36px;
+  padding-left: 24px;
+}

@@ -9,7 +9,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
 
   margin: 0;
   padding: 0;
@@ -39,7 +39,11 @@
 .shape-icon__image{
   width: 35px;
   height: 35px;
+  opacity: 40%;
+}
 
+.shape-icon__input:checked ~ img {
+  opacity: 100%;
 }
 
 .shape-icon__title {
