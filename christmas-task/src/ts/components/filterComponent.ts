@@ -32,6 +32,7 @@ export class FiltersComponent extends Component {
     onlyFavorites?: FavoritesFilter
   }
   filtersChangeEvent: CustomEvent;
+  buttonReset: HTMLButtonElement;
 
 
   constructor(toysData: Data){
@@ -65,6 +66,9 @@ export class FiltersComponent extends Component {
       this.root.append(value.construct());
     }
 
+    this.buttonReset = this.drawButtonReset();
+    this.root.append(this.buttonReset);
+
     this.updateFilters();
 
     this.subscribe();
@@ -75,6 +79,24 @@ export class FiltersComponent extends Component {
 
   initFiltersObj(): void{
     this.filters = {};
+  }
+
+  drawButtonReset(): HTMLButtonElement {
+    let btn = document.createElement('button');
+    btn.innerText = 'Сбросить фильтры';
+    btn.classList.add('button-reset-filters');
+    //this.resetAllFilters.bind(this);
+    btn.addEventListener('click', () => {
+      this.resetAllFilters()
+    });
+    return btn;
+  }
+
+  resetAllFilters(): void {
+    for (let value of Object.values(this.filterComponentsObject)){
+      value.reset();
+    }
+    this.search.reset();
   }
 
   subscribe(): void {

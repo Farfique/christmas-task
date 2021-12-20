@@ -32,7 +32,7 @@
   padding-left: 24px;
   width: 254px;
   height: 36px;
-  background: $input-bgr-color, url('./assets/svg/search.svg');
+  background: linear-gradient($input-bgr-color, $input-bgr-color), url('./assets/svg/search.svg');
   background-repeat: no-repeat, no-repeat;
   background-position: center center, 213px center;
   background-size: cover, 24px 24px;
@@ -73,4 +73,13 @@
 
 .categories-container__title {
   margin-bottom: 15px;
+}
+
+.button-reset-filters {
+  @include text;
+  @include blue-card;
+  padding: 0;
+  width: 254px;
+  height: 36px;
+  cursor: pointer;
 }

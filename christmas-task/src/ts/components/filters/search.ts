@@ -28,10 +28,19 @@ export class Search extends Component {
 
   subscribe(): void {
     this.input.addEventListener('input', () => {
-        let inputEvent = new CustomEvent('searchChange', {bubbles: true, detail: {
-          value: this.input.value
-        }});
-        this.root.dispatchEvent(inputEvent);
+      this.dispatchSearchChangeEvent(this.input.value);
     })
+  }
+
+  reset() : void {
+    this.input.value = '';
+    this.dispatchSearchChangeEvent(this.input.value);
+  }
+
+  dispatchSearchChangeEvent(value: string): void {
+    let inputEvent = new CustomEvent('searchChange', {bubbles: true, detail: {
+      value: value
+    }});
+    this.root.dispatchEvent(inputEvent);
   }
 }

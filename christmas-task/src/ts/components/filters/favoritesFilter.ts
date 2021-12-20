@@ -31,6 +31,7 @@ export class FavoritesFilter extends AbstractFilter {
     let checkedString = this.filter? 'checked': '';
     labelContainer.innerHTML = this.drawLabel(this.key, checkedString);
     this.checkbox = labelContainer.querySelector('input');
+    this.subscribe();
 
     this.root.append(title, labelContainer);
 
@@ -48,5 +49,12 @@ export class FavoritesFilter extends AbstractFilter {
     this.initFilter(false);
     this.checkbox.checked = false;
     this.root.dispatchEvent(this.filterEvent);
+  }
+
+  subscribe(): void {
+    this.checkbox.addEventListener('change', () => {
+      this.filter = this.checkbox.checked;
+      this.root.dispatchEvent(this.filterEvent);
+    })
   }
 }
