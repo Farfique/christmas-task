@@ -1,8 +1,5 @@
+import { Shape } from "./enums";
+
 export type FilteredShapes = {
-  bell : boolean,
-  ball : boolean,
-  cone : boolean,
-  star : boolean,
-  snowflake : boolean,
-  figurine : boolean
+  -readonly [Property in keyof typeof Shape]: boolean
 };

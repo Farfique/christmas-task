@@ -4,7 +4,7 @@ import { FilterCategoriesNames } from "../../model/enums";
 export class AbstractFilter extends Component {
   key: string //same as in Toy type
 
-  constructor(key: string){
+  constructor(key: keyof typeof FilterCategoriesNames){
     super(FilterCategoriesNames[key]);
     this.key = key;
   }

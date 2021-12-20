@@ -1,5 +1,5 @@
+import { Size } from "./enums";
+
 export type FilteredSizes = {
-  small: boolean,
-  medium: boolean,
-  big: boolean
+  -readonly [Property in keyof typeof Size]: boolean
 }

@@ -1,9 +1,5 @@
+import { FilterCategoriesNames } from "./enums";
+
 export type FilterCategories = {
-  all: boolean,
-  year: boolean,
-  count: boolean,
-  shape: boolean,
-  color: boolean,
-  size: boolean,
-  onlyFavorites: boolean 
+  -readonly [Property in keyof typeof FilterCategoriesNames]: boolean
 }

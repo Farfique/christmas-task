@@ -2,14 +2,15 @@ import { AbstractFilter } from "./abstractFilter";
 import { FilteredColors } from "../../model/filteredColors";
 import { FilteredShapes } from "../../model/filteredShapes";
 import { FilteredSizes } from "../../model/filteredSizes";
+import { FilterCategoriesNames } from "../../model/enums";
 
 export class AbstractCheckboxFilter extends AbstractFilter {
   filter: FilteredColors | FilteredShapes | FilteredSizes;
   filterEvent: CustomEvent;
-  enumKeys: string[];
+  enumKeys: Array<keyof FilteredColors> | Array<keyof FilteredShapes>| Array<keyof FilteredSizes>;
   innerHTML: (k: string, ch: string) => string;
 
-  constructor(key: string){
+  constructor(key: "color" | "shape" | "size"){
     super(key);
     this.filterEvent = new CustomEvent(`${this.key}FilterEvent`, {bubbles: true});
   }
@@ -26,6 +27,7 @@ export class AbstractCheckboxFilter extends AbstractFilter {
     ul.classList.add(`${this.key}-filter-container__list`);
 
     for (let enumKey of this.enumKeys){
+      
       const listItem = this.drawCheckbox(enumKey, this.filter[enumKey], this.innerHTML);
       ul.append(listItem);
       const input = listItem.querySelector('input') as HTMLInputElement;
@@ -45,7 +47,7 @@ export class AbstractCheckboxFilter extends AbstractFilter {
   }
 
   initFilter(withTrue? : boolean): void {
-
+    throw "should be implemented in children";
   }
 
 

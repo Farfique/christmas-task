@@ -28,7 +28,7 @@ export class Data {
     this.rangeCount = this.getRange(this.toys, 'count');
   }
 
-  getRange(toysArr: Toy[], key: string) : number[] {
+  getRange(toysArr: Toy[], key: "year" | "count") : number[] {
     return [Math.min(...toysArr.map((toy) => toy[key])), Math.max(...toysArr.map((toy) => toy[key]))]
   }
 

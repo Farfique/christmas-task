@@ -46,7 +46,7 @@ export class Categories extends Component {
 
     let labelCollection = [] as HTMLElement[];
 
-    for (let key of Object.keys(this.categories)){
+    for (let key of Object.keys(this.categories) as Array<keyof FilterCategories>){
       let li = this.drawCheckbox(key, this.categories[key]);
       labelCollection.push(li);
       
@@ -62,7 +62,7 @@ export class Categories extends Component {
 
         if (input.classList.contains(`categories__checkbox-all`)){
           if (input.checked){
-            for (let key of Object.keys(this.categories)){
+            for (let key of Object.keys(this.categories) as Array<keyof FilterCategories>){
               this.categories[key] = true;
             }
             labelCollection.forEach((listItem) => {
@@ -90,7 +90,7 @@ export class Categories extends Component {
     }
   }
 
-  drawCheckbox(key: string, checked: boolean) : HTMLLIElement{
+  drawCheckbox(key: keyof FilterCategories, checked: boolean) : HTMLLIElement{
     let checkedString = checked? 'checked': '';
     let liCheckbox = document.createElement('li');
     liCheckbox.innerHTML = 

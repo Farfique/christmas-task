@@ -20,7 +20,7 @@ export class Sort extends Component {
 
     this.select = document.createElement('select');
     this.select.classList.add('control', 'select', 'sort-container__select');
-    for (let key of Object.keys(Order)){
+    for (let key of Object.keys(Order) as Array<keyof typeof Order>){
       let optionEl = document.createElement('option');
       optionEl.value = key;
       optionEl.innerText = Order[key];

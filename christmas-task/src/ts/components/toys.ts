@@ -1,5 +1,6 @@
 import { Data } from "../model/data";
 import { Color, Shape, Size } from "../model/enums";
+import { Filter } from "../model/filter";
 import Component from "./abstractComponent";
 import { FiltersComponent } from "./filterComponent";
 import ToyInfoCard from "./toyInfoCard";
@@ -65,7 +66,7 @@ export default class Toys extends Component {
   applyFilter() : void {
     this.clearContainer(this.cardsContainer);
     this.filteredCards = this.cards.filter(card => {
-      return Object.keys(this.filters.filters).reduce((prev: boolean, filterKey) => {
+      return (Object.keys(this.filters.filters) as Array<keyof Filter>).reduce((prev: boolean, filterKey) => {
         if (!prev){
           return prev;
         }
@@ -89,17 +90,17 @@ export default class Toys extends Component {
               break;
             case 'shape':
               let shape = card.toyInfo.shape;
-              let shapeKey = Object.keys(Shape).filter(key => Shape[key] == shape)[0];
+              let shapeKey = (Object.keys(Shape) as Array<keyof typeof Shape>).filter(key => Shape[key] == shape)[0];
               currentValue = this.filters.filters[filterKey][shapeKey];
               break;
             case 'color':
               let color = card.toyInfo.color;
-              let colorKey = Object.keys(Color).filter(key => Color[key] == color)[0];
+              let colorKey = (Object.keys(Color) as Array<keyof typeof Color>).filter(key => Color[key] == color)[0];
               currentValue = this.filters.filters[filterKey][colorKey];
               break;
             case 'size':
               let size = card.toyInfo.size;
-              let sizeKey = Object.keys(Size).filter(key => Size[key] == size)[0];
+              let sizeKey = (Object.keys(Size) as Array<keyof typeof Size>).filter(key => Size[key] == size)[0];
               currentValue = this.filters.filters[filterKey][sizeKey];
               break;
             case 'onlyFavorites':

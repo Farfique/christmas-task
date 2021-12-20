@@ -143,7 +143,7 @@ export class FiltersComponent extends Component {
   }
 
   updateFilters(){
-    for (let key of Object.keys(this.categories.categories)){
+    for (let key of Object.keys(this.categories.categories) as Array<keyof FilterCategories>){
       if (key !== 'all'){
         if (this.categories.categories[key]){
           this.filterComponentsObject[key].show();

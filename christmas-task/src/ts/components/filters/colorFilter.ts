@@ -1,4 +1,5 @@
 import { Color } from "../../model/enums";
+import { FilteredColors } from "../../model/filteredColors";
 import { AbstractCheckboxFilter } from "./abstractCheckBoxFilter";
 
 export class ColorFilter extends AbstractCheckboxFilter {
@@ -17,19 +18,17 @@ export class ColorFilter extends AbstractCheckboxFilter {
   }
 
   initFilter(withTrue? : boolean): void {
-    if (withTrue) {
-      this.filter = {
-        white: true,
-        yellow: true,
-        red: true,
-        blue: true,
-        green: true
-      }
-    }
+    this.filter = {
+      white: true,
+      yellow: true,
+      red: true,
+      blue: true,
+      green: true
+    } 
   }
 
   initEnumKeys(): void {
-    this.enumKeys = Object.keys(Color);
+    this.enumKeys = Object.keys(Color) as Array<keyof FilteredColors>;
   }
 
   drawLiInnerHtml(key: string, checkedString: string): string {

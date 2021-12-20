@@ -47,6 +47,7 @@ export default class Header extends Component{
       itemLink.classList.add('main-menu__link');
       itemLink.innerText = menuItem.title;
       itemLink.href = '#';
+      /*
       itemLink.addEventListener('click', (e) => {
         e.preventDefault();
         
@@ -61,6 +62,7 @@ export default class Header extends Component{
           }      
         }  
       });
+      */
 
       listItem.append(itemLink);
 

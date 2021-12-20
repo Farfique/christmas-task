@@ -10,7 +10,7 @@ export class DoubleSlider extends AbstractFilter {
   rangeFrom?: number;
   rangeTo?: number;
   
-  constructor(key: string, min: number, max: number){
+  constructor(key: "year" | "count", min: number, max: number){
     super(key);
     this.min = min;
     this.max = max;

@@ -1,4 +1,6 @@
 import { Size } from "../../model/enums";
+import { FilteredShapes } from "../../model/filteredShapes";
+import { FilteredSizes } from "../../model/filteredSizes";
 import { AbstractCheckboxFilter } from "./abstractCheckBoxFilter";
 
 export class SizeFilter extends AbstractCheckboxFilter {
@@ -15,7 +17,7 @@ export class SizeFilter extends AbstractCheckboxFilter {
   }
 
   initEnumKeys(): void {
-    this.enumKeys = Object.keys(Size);
+    this.enumKeys = Object.keys(Size) as Array<keyof FilteredShapes>;
   }
 
   initFilter(withTrue? : boolean): void {
@@ -24,14 +26,15 @@ export class SizeFilter extends AbstractCheckboxFilter {
         small: true,
         medium: true,
         big: true
-      }
+      } as FilteredSizes;
     }
   }
 
   drawLiInnerHtml(key: string, checkedString: string): string {
+    let key2 = key as keyof typeof Size;
     return `<label class="size-filter-container__item_label size-icon">
     <input class="size-filter-container__item_checkbox size-icon__input checkbox" value="${key}" type="checkbox" ${checkedString}>
-    <div class="size-filter-container__item_title size-icon__title">${Size[key]}</div>
+    <div class="size-filter-container__item_title size-icon__title">${Size[key2]}</div>
     </label>`
   }
 
