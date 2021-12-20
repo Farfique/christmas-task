@@ -11,18 +11,25 @@ const baseConfig = {
     module: {
         rules: [
             {
-                test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/i,
-                type: 'asset/resource',
-                generator : {
-                    filename : 'assets/img/[name][ext][query]',
-                }
+              test: /\.(?:gif|png|jpg|jpeg|webp)$/i,
+              type: 'asset/resource',
+              generator : {
+                  filename : 'assets/img/[name][ext][query]',
+              }
             },
             {
-                test: /\.(?:svg)$/i,
-                type: 'asset/resource',
-                generator : {
-                  filename : 'assets/svg/[name][ext][query]',
-                }
+              test: /\.(?:ico)$/i,
+              type: 'asset/resource',
+              generator : {
+                filename : 'assets/[name][ext][query]',
+              }
+            },
+            {
+              test: /\.(?:svg)$/i,
+              type: 'asset/resource',
+              generator : {
+                filename : 'assets/svg/[name][ext][query]',
+              }
             },
             {
               test: /\.(?:mp3|wav|ogg|mp4)$/i,
