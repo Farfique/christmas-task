@@ -14,7 +14,6 @@ export class Data {
       let result = await fetch('assets/data/data.json');
       let info = await result.json() as {data: Toy[]};
       this.toys.push(...info.data);
-      console.log("toys = ", this.toys);
       this.getRanges();
       return this.toys;
     }

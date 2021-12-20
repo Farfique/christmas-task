@@ -51,7 +51,6 @@ export default class Header extends Component{
         e.preventDefault();
         
         if (e.target instanceof HTMLElement){
-          console.log("item with title = ", e.target.innerText);
           for (let item of this.menu) {
             if ( item.title !== e.target.innerText){
               item.hide()

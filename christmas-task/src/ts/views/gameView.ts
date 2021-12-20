@@ -12,7 +12,6 @@ export default class Game extends View {
 
   constructor(toysData: Data) {
     super();
-    console.log("gameview constructor: toysdata: ", toysData);
     this.toys = new Toys(toysData);
     this.xmasTree = new ChristmasTree();
     this.header = new Header([this.toys, this.xmasTree]);

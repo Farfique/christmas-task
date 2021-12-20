@@ -1,5 +1,6 @@
 import * as noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
+import { format } from 'path/posix';
 import { AbstractFilter } from "./abstractFilter";
 
 export class DoubleSlider extends AbstractFilter {
@@ -36,6 +37,16 @@ export class DoubleSlider extends AbstractFilter {
         start: [this.rangeFrom, this.rangeTo],
         connect: true,
         step: 1,
+        tooltips: true,
+        format: {
+          to: function(value){
+            return Math.floor(value);
+          },
+          from: function(value){
+            return Math.floor(+value);
+          }
+        },
+  
         range: {
             'min': this.min,
             'max': this.max
@@ -73,8 +84,6 @@ export class DoubleSlider extends AbstractFilter {
 
   valuesChangeCallback(values: (string | number)[]) : void {
     [this.rangeFrom, this.rangeTo] = [+values[0], +values[1]];
-    console.log('range has changed, rangeFrom = ', this.rangeFrom, ', rangeTo = ', this.rangeTo);
-
     let event = new CustomEvent(`${this.key}SliderChange`, {bubbles: true, detail: {
       value: [this.rangeFrom, this.rangeTo]
     }});

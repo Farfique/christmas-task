@@ -16,6 +16,7 @@ export class Search extends Component {
     title.innerText = this.title;
 
     this.input = document.createElement('input') as HTMLInputElement;
+    this.input.autocomplete = "off";
     this.input.classList.add('search-container__input', 'input-theme');
     this.input.placeholder = 'Название игрушки';
 

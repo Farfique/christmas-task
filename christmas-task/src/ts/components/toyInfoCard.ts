@@ -41,7 +41,6 @@ export default class ToyInfoCard extends Component {
     const input = this.root.querySelector('.checkbox-favorite') as HTMLInputElement;
     input.addEventListener('change', () => {
       this.toyInfo.favorite = input.checked;
-      console.log(this.toyInfo);
     })
   }
 

@@ -101,11 +101,9 @@ export class FiltersComponent extends Component {
 
   subscribe(): void {
     this.root.addEventListener('categoriesChangeEvent', (event: CustomEvent) => {
-      console.log("I got categories change, categories value = ", this.categories.categories);
       this.updateFilters();
     });
     this.root.addEventListener('searchChange', (event: CustomEvent) => {
-      console.log("I got search change, it's value = ", event.detail.value);
       if (event.detail.value !== ""){
         this.filters.str = event.detail.value;
       }
@@ -115,37 +113,30 @@ export class FiltersComponent extends Component {
       this.root.dispatchEvent(this.filtersChangeEvent);      
     });
     this.root.addEventListener('sortChange', (event: CustomEvent) => {
-      console.log("I got sort change, it's value = ", event.detail.value);
     });
     this.root.addEventListener('countSliderChange', (event: CustomEvent) => {
-      console.log("I got count slider change, it's value = ", event.detail.value);
       this.filters.countFrom = event.detail.value[0];
       this.filters.countTo = event.detail.value[1];
       this.root.dispatchEvent(this.filtersChangeEvent);   
     });
     this.root.addEventListener('yearSliderChange', (event: CustomEvent) => {
-      console.log("I got year slider change, it's value = ", event.detail.value);
       this.filters.yearFrom = event.detail.value[0];
       this.filters.yearTo = event.detail.value[1];
       this.root.dispatchEvent(this.filtersChangeEvent);   
     });
     this.root.addEventListener('shapeFilterEvent', () => {
-      console.log("I got shape filter event change, it's value = ", this.filterComponentsObject.shape.filter);
       this.filters.shape = this.filterComponentsObject.shape.filter as FilteredShapes;
       this.root.dispatchEvent(this.filtersChangeEvent);
     });
     this.root.addEventListener('colorFilterEvent', () => {
-      console.log("I got color filter event change, it's value = ", this.filterComponentsObject.color.filter);
       this.filters.color = this.filterComponentsObject.color.filter as FilteredColors;
       this.root.dispatchEvent(this.filtersChangeEvent);
     });
     this.root.addEventListener('sizeFilterEvent', () => {
-      console.log("I got size filter event change, it's value = ", this.filterComponentsObject.size.filter);
       this.filters.size = this.filterComponentsObject.size.filter as FilteredSizes;
       this.root.dispatchEvent(this.filtersChangeEvent);
     });
     this.root.addEventListener('favoritesFilterEvent', () => {
-      console.log("I got favorites filter event change, it's value = ", this.filterComponentsObject.onlyFavorites.filter);
       this.filters.onlyFavorites = this.filterComponentsObject.onlyFavorites.filter as boolean;
       this.root.dispatchEvent(this.filtersChangeEvent);
     });

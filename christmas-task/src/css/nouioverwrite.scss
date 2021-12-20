@@ -41,3 +41,7 @@
   @include h4-font;
   line-height: 12px;
 }
+
+.noUi-handle:not(:active) .noUi-tooltip {
+  visibility: hidden;
+}

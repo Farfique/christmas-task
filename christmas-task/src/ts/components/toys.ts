@@ -22,7 +22,6 @@ export default class Toys extends Component {
   }
 
   initCards(){
-    console.log("toysdata = ", this.toysData);
     this.toysData.toys.forEach((toy) => {
       let card = new ToyInfoCard(toy);
       card.construct();
@@ -64,7 +63,6 @@ export default class Toys extends Component {
   }
 
   applyFilter() : void {
-    console.log("applyFilter this = ", this);
     this.clearContainer(this.cardsContainer);
     this.filteredCards = this.cards.filter(card => {
       return Object.keys(this.filters.filters).reduce((prev: boolean, filterKey) => {
@@ -72,8 +70,6 @@ export default class Toys extends Component {
           return prev;
         }
         let currentValue = prev as boolean;
-        console.log("filterKey = ", filterKey);
-        console.log("filters value = ", this.filters.filters[filterKey]);
         if (this.filters.filters[filterKey] !== null) {
           switch (filterKey){
             case 'str':           
