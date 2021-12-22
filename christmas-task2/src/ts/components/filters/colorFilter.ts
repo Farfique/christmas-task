@@ -2,7 +2,7 @@ import { Color } from "../../model/enums";
 import { FilteredColors } from "../../model/filteredColors";
 import { AbstractCheckboxFilter } from "./abstractCheckBoxFilter";
 
-export class ColorFilter extends AbstractCheckboxFilter {
+export class ColorFilter extends AbstractCheckboxFilter<FilteredColors> {
 
   constructor(){
     super('color');
@@ -17,14 +17,14 @@ export class ColorFilter extends AbstractCheckboxFilter {
     return this.root;
   }
 
-  initFilter(withTrue? : boolean): void {
+  initFilter(withTrue: boolean): void {
     this.filter = {
       white: true,
       yellow: true,
       red: true,
       blue: true,
       green: true
-    } 
+    }
   }
 
   initEnumKeys(): void {

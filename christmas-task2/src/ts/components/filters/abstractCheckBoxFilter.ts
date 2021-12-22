@@ -4,11 +4,11 @@ import { FilteredShapes } from "../../model/filteredShapes";
 import { FilteredSizes } from "../../model/filteredSizes";
 import { FilterCategoriesNames } from "../../model/enums";
 
-export class AbstractCheckboxFilter extends AbstractFilter {
-  filter: FilteredColors | FilteredShapes | FilteredSizes;
+export class AbstractCheckboxFilter<T extends {[key: string]: boolean}> extends AbstractFilter {
+  filter: T;
   filterEvent: CustomEvent;
-  enumKeys: Array<keyof FilteredColors> | Array<keyof FilteredShapes>| Array<keyof FilteredSizes>;
-  innerHTML: (k: string, ch: string) => string;
+  enumKeys: Array<keyof T>;
+  innerHTML: (k: keyof T, ch: string) => string;
 
   constructor(key: "color" | "shape" | "size"){
     super(key);
@@ -32,7 +32,7 @@ export class AbstractCheckboxFilter extends AbstractFilter {
       ul.append(listItem);
       const input = listItem.querySelector('input') as HTMLInputElement;
       input.addEventListener('change', () => {
-        this.filter[enumKey] = input.checked;
+        this.filter[enumKey] = input.checked as T[keyof T];
         this.root.dispatchEvent(this.filterEvent);
       })
     }
@@ -46,12 +46,12 @@ export class AbstractCheckboxFilter extends AbstractFilter {
 
   }
 
-  initFilter(withTrue? : boolean): void {
+  initFilter(withTrue: boolean): void{
     throw "should be implemented in children";
   }
 
 
-  drawCheckbox(key: string, checked: boolean, innerHTML: (k: string, ch: string) => string): HTMLLIElement {
+  drawCheckbox(key: keyof T, checked: boolean, innerHTML: (k: keyof T, ch: string) => string): HTMLLIElement {
     let checkedString = checked? 'checked': '';
     const li = document.createElement('li');
     li.classList.add(`${this.key}-filter-container__item)`);

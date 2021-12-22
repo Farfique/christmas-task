@@ -2,7 +2,7 @@ import { Shape } from "../../model/enums";
 import { FilteredShapes } from "../../model/filteredShapes";
 import { AbstractCheckboxFilter } from "./abstractCheckBoxFilter";
 
-export class ShapeFilter extends AbstractCheckboxFilter {
+export class ShapeFilter extends AbstractCheckboxFilter<FilteredShapes> {
 
   constructor(){
     super('shape');
@@ -19,7 +19,7 @@ export class ShapeFilter extends AbstractCheckboxFilter {
     this.enumKeys = Object.keys(Shape) as Array<keyof FilteredShapes>;
   }
 
-  initFilter(withTrue? : boolean): void {
+  initFilter(withTrue: boolean): void {
     if (withTrue) {
       this.filter = {
         bell : true,

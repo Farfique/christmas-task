@@ -3,7 +3,7 @@ import { FilteredShapes } from "../../model/filteredShapes";
 import { FilteredSizes } from "../../model/filteredSizes";
 import { AbstractCheckboxFilter } from "./abstractCheckBoxFilter";
 
-export class SizeFilter extends AbstractCheckboxFilter {
+export class SizeFilter extends AbstractCheckboxFilter<FilteredSizes> {
 
   constructor(){
     super('size');
@@ -17,10 +17,10 @@ export class SizeFilter extends AbstractCheckboxFilter {
   }
 
   initEnumKeys(): void {
-    this.enumKeys = Object.keys(Size) as Array<keyof FilteredShapes>;
+    this.enumKeys = Object.keys(Size) as Array<keyof FilteredSizes>;
   }
 
-  initFilter(withTrue? : boolean): void {
+  initFilter(withTrue: boolean): void {
     if (withTrue) {
       this.filter = {
         small: true,
