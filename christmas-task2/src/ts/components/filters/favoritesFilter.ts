@@ -30,7 +30,7 @@ export class FavoritesFilter extends AbstractFilter {
 
     let checkedString = this.filter? 'checked': '';
     labelContainer.innerHTML = this.drawLabel(this.key, checkedString);
-    this.checkbox = labelContainer.querySelector('input');
+    this.checkbox = labelContainer.querySelector('input')!;
     this.subscribe();
 
     this.root.append(title, labelContainer);

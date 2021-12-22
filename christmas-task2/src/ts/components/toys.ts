@@ -71,37 +71,37 @@ export default class Toys extends Component {
           return prev;
         }
         let currentValue = prev as boolean;
-        if (this.filters.filters[filterKey] !== null) {
+        if (this.filters.filters[filterKey] !== null && this.filters.filters[filterKey] !== undefined) {
           switch (filterKey){
             case 'str':           
-              currentValue = card.toyInfo.name.toLowerCase().includes(this.filters.filters[filterKey].toLowerCase());
+              currentValue = card.toyInfo.name.toLowerCase().includes(this.filters.filters[filterKey]!.toLowerCase());
               break;
             case 'countFrom':
-              currentValue = card.toyInfo.count >= this.filters.filters[filterKey];
+              currentValue = card.toyInfo.count >= this.filters.filters[filterKey]!;
               break;
             case 'countTo':
-              currentValue = card.toyInfo.count <= this.filters.filters[filterKey];
+              currentValue = card.toyInfo.count <= this.filters.filters[filterKey]!;
               break;
             case 'yearFrom': 
-              currentValue = card.toyInfo.year >= this.filters.filters[filterKey];
+              currentValue = card.toyInfo.year >= this.filters.filters[filterKey]!;
               break;
             case 'yearTo':
-              currentValue = card.toyInfo.year <= this.filters.filters[filterKey];
+              currentValue = card.toyInfo.year <= this.filters.filters[filterKey]!;
               break;
             case 'shape':
               let shape = card.toyInfo.shape;
               let shapeKey = (Object.keys(Shape) as Array<keyof typeof Shape>).filter(key => Shape[key] == shape)[0];
-              currentValue = this.filters.filters[filterKey][shapeKey];
+              currentValue = this.filters.filters[filterKey]![shapeKey];
               break;
             case 'color':
               let color = card.toyInfo.color;
               let colorKey = (Object.keys(Color) as Array<keyof typeof Color>).filter(key => Color[key] == color)[0];
-              currentValue = this.filters.filters[filterKey][colorKey];
+              currentValue = this.filters.filters[filterKey]![colorKey];
               break;
             case 'size':
               let size = card.toyInfo.size;
               let sizeKey = (Object.keys(Size) as Array<keyof typeof Size>).filter(key => Size[key] == size)[0];
-              currentValue = this.filters.filters[filterKey][sizeKey];
+              currentValue = this.filters.filters[filterKey]![sizeKey];
               break;
             case 'onlyFavorites':
               currentValue = this.filters.filters[filterKey]? card.toyInfo.favorite : true;
@@ -120,7 +120,7 @@ export default class Toys extends Component {
 
   clearContainer(container: HTMLDivElement){
     while (container.firstElementChild){
-      container.lastElementChild.remove();
+      container.lastElementChild!.remove();
     }
 
 

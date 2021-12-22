@@ -67,19 +67,29 @@ export class DoubleSlider extends AbstractFilter {
   }
 
   subscribe(): void {
-    
-    this.slider.noUiSlider.on('set', values => {
-      this.valuesChangeCallback(values);
-    })
-    this.slider.noUiSlider.on('change', (values) => {
+    if (this.slider && this.slider.noUiSlider){
+      this.slider.noUiSlider.on('set', values => {
         this.valuesChangeCallback(values);
-    }); //TODO: update values, raise event
-
+      })
+      this.slider.noUiSlider.on('change', (values) => {
+          this.valuesChangeCallback(values);
+      }); //TODO: update values, raise event
+  
+    }
+    else {
+      console.log("noUISlider or slider has disappeared");
+    }
+    
   }
 
   reset() : void {
-    this.slider.noUiSlider.set([this.min, this.max]);
-    //todo: save to local  storage
+    if (this.slider && this.slider.noUiSlider){
+      this.slider.noUiSlider.set([this.min, this.max]);
+      //todo: save to local  storage
+    }
+    else {
+      console.log("noUISlider or slider has disappeared");
+    }
   }
 
   valuesChangeCallback(values: (string | number)[]) : void {

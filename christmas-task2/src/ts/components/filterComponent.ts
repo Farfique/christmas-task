@@ -24,12 +24,12 @@ export class FiltersComponent extends Component {
   sort: Sort;
   toysData: Data;
   filterComponentsObject: {
-    year?: DoubleSlider,
-    count?: DoubleSlider,
-    shape?: ShapeFilter,
-    color?: ColorFilter,
-    size?: SizeFilter,
-    onlyFavorites?: FavoritesFilter
+    year: DoubleSlider,
+    count: DoubleSlider,
+    shape: ShapeFilter,
+    color: ColorFilter,
+    size: SizeFilter,
+    onlyFavorites: FavoritesFilter
   }
   filtersChangeEvent: CustomEvent;
   buttonReset: HTMLButtonElement;
@@ -108,7 +108,7 @@ export class FiltersComponent extends Component {
         this.filters.str = event.detail.value;
       }
       else {
-        this.filters.str = null;
+        this.filters.str = undefined;
       }
       this.root.dispatchEvent(this.filtersChangeEvent);      
     });

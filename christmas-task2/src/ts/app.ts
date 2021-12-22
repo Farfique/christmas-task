@@ -9,7 +9,7 @@ class App {
   data: Data;
 
   constructor(){
-    this.root = document.querySelector('#app');
+    this.root = document.querySelector('#app')!;
     this.welcomeView = new WelcomeView();
     this.data = new Data();
   }
