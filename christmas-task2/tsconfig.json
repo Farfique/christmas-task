@@ -9,7 +9,7 @@
     //"alwaysStrict": true, 
     "noImplicitAny": true, 
     "strictNullChecks": true, 
-    //"strictFunctionTypes": true, 
+    "strictFunctionTypes": true, 
     //"strictPropertyInitialization": true, 
     //"noImplicitThis": true, 
     //"strictBindCallApply": true
