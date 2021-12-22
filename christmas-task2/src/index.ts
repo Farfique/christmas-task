@@ -5,7 +5,7 @@ import { reportText } from './ts/utils/reportFile';
 
 const app = new App();
 app.start();
-writeReport();
+//writeReport();
 
 function writeReport(){
   reportText.forEach((str) => {

@@ -8,12 +8,10 @@ class App {
   gameView : GameView;
   data: Data;
 
-
   constructor(){
     this.root = document.querySelector('#app');
     this.welcomeView = new WelcomeView();
     this.data = new Data();
-    
   }
 
 

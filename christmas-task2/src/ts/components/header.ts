@@ -47,22 +47,26 @@ export default class Header extends Component{
       itemLink.classList.add('main-menu__link');
       itemLink.innerText = menuItem.title;
       itemLink.href = '#';
-      /*
+
       itemLink.addEventListener('click', (e) => {
         e.preventDefault();
+        let target = e.target as HTMLElement;
+        console.log("you clicked on ", target.textContent);
+
         
-        if (e.target instanceof HTMLElement){
-          for (let item of this.menu) {
-            if ( item.title !== e.target.innerText){
-              item.hide()
-            }
-            else {
-              menuItem.show();
-            }
-          }      
-        }  
+
+        for (let item of this.menu) {
+          console.log("item title = ", item.title);
+          if ( item.title !== target.textContent){
+            item.hide();
+          }
+          else {
+            item.show();
+          }
+        }      
+
       });
-      */
+
 
       listItem.append(itemLink);
 

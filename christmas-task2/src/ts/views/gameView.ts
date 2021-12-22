@@ -13,7 +13,7 @@ export default class Game extends View {
   constructor(toysData: Data) {
     super();
     this.toys = new Toys(toysData);
-    this.xmasTree = new ChristmasTree();
+    this.xmasTree = new ChristmasTree(toysData);
     this.header = new Header([this.toys, this.xmasTree]);
   }
 
@@ -21,6 +21,8 @@ export default class Game extends View {
     this.root = document.createElement('div');
     this.root.append(this.header.construct());
     this.root.append(this.toys.construct());
+    this.root.append(this.xmasTree.construct());
+    this.xmasTree.hide();
 
     return super.initialize();
   }

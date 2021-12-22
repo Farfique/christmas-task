@@ -1,0 +1,37 @@
+@use './fonts.scss' as *;
+
+.toy-decor-card {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.toy-decor-card__image {
+  position: absolute;
+  width: 60px;
+  height: auto;
+  top: 10px;
+  left: 19px;
+  z-index: 10;
+}
+
+.toy-decor-card__number-left {
+  @include text;
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  width: 22px;
+  height: 19px;
+  border-radius: 10px;
+  background-color: #24c5db;
+
+}
+
+.select-toys-container {
+  width: 344px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
