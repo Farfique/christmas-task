@@ -7,6 +7,8 @@ export class Data {
 
   constructor(){
     this.toys = [];
+    this.rangeCount = [];
+    this.rangeYear = [];
   }
 
   async init(): Promise<Toy[]>{

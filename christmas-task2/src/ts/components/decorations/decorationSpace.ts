@@ -11,7 +11,7 @@ export class DecorationSpace extends Component {
     let bgrImage = new Image();
     bgrImage.src = "./assets/bg/1.jpg";
     bgrImage.onload = () => {
-      this.root.style.backgroundImage = 'url("' + bgrImage.src + '")';
+      this.root!.style.backgroundImage = 'url("' + bgrImage.src + '")';
     }
 
     
@@ -32,6 +32,6 @@ export class DecorationSpace extends Component {
     this.root.append(tree, map);
 
 
-    return super.construct();
+    return this.root;
   }
 }

@@ -1,7 +1,7 @@
 import Component from "../abstractComponent";
 
 export class Search extends Component {
-  input: HTMLInputElement;
+  input?: HTMLInputElement;
   
   constructor(){
     super('Поиск');
@@ -24,24 +24,31 @@ export class Search extends Component {
 
     this.subscribe();
 
-    return super.construct();
+    return this.root;
   }
 
   subscribe(): void {
-    this.input.addEventListener('input', () => {
-      this.dispatchSearchChangeEvent(this.input.value);
-    })
+    if (this.input){
+      this.input.addEventListener('input', () => {
+        this.dispatchSearchChangeEvent(this.input!.value);
+      })
+    }
+    
   }
 
   reset() : void {
-    this.input.value = '';
-    this.dispatchSearchChangeEvent(this.input.value);
+    if (this.input){
+      this.input.value = '';
+      this.dispatchSearchChangeEvent(this.input.value);
+    }
   }
 
   dispatchSearchChangeEvent(value: string): void {
     let inputEvent = new CustomEvent('searchChange', {bubbles: true, detail: {
       value: value
     }});
-    this.root.dispatchEvent(inputEvent);
+    if (this.root){
+      this.root.dispatchEvent(inputEvent);
+    }
   }
 }

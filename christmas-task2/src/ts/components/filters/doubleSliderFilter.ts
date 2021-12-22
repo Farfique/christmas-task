@@ -4,7 +4,7 @@ import { format } from 'path/posix';
 import { AbstractFilter } from "./abstractFilter";
 
 export class DoubleSlider extends AbstractFilter {
-  slider: noUiSlider.target;
+  slider?: noUiSlider.target;
   min: number;
   max: number;
   rangeFrom?: number;
@@ -63,7 +63,7 @@ export class DoubleSlider extends AbstractFilter {
 
     this.root.append(title, this.slider);
 
-    return super.construct();
+    return this.root;
   }
 
   subscribe(): void {
@@ -97,7 +97,9 @@ export class DoubleSlider extends AbstractFilter {
     let event = new CustomEvent(`${this.key}SliderChange`, {bubbles: true, detail: {
       value: [this.rangeFrom, this.rangeTo]
     }});
-    this.root.dispatchEvent(event);
+    if (this.root){
+      this.root.dispatchEvent(event);
+    }
   }
 
 }

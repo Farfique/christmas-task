@@ -4,11 +4,11 @@ import { FilteredShapes } from "../../model/filteredShapes";
 import { FilteredSizes } from "../../model/filteredSizes";
 import { FilterCategoriesNames } from "../../model/enums";
 
-export class AbstractCheckboxFilter<T extends {[key: string]: boolean}> extends AbstractFilter {
-  filter: T;
+export abstract class AbstractCheckboxFilter<T extends {[key: string]: boolean}> extends AbstractFilter {
+  abstract filter: T;
   filterEvent: CustomEvent;
-  enumKeys: Array<keyof T>;
-  innerHTML: (k: keyof T, ch: string) => string;
+  abstract enumKeys: Array<keyof T>;
+  abstract innerHTML: (k: keyof T, ch: string) => string;
 
   constructor(key: "color" | "shape" | "size"){
     super(key);
@@ -33,22 +33,18 @@ export class AbstractCheckboxFilter<T extends {[key: string]: boolean}> extends 
       const input = listItem.querySelector('input') as HTMLInputElement;
       input.addEventListener('change', () => {
         this.filter[enumKey] = input.checked as T[keyof T];
-        this.root.dispatchEvent(this.filterEvent);
+        this.root!.dispatchEvent(this.filterEvent);
       })
     }
 
     this.root.append(title, ul);
 
-    return super.construct();
+    return this.root;
   }
 
-  initEnumKeys(): void {
+  abstract initEnumKeys(): Array<keyof T>; 
 
-  }
-
-  initFilter(withTrue: boolean): void{
-    throw "should be implemented in children";
-  }
+  abstract initFilter(withTrue: boolean): T;
 
 
   drawCheckbox(key: keyof T, checked: boolean, innerHTML: (k: keyof T, ch: string) => string): HTMLLIElement {
@@ -68,16 +64,21 @@ export class AbstractCheckboxFilter<T extends {[key: string]: boolean}> extends 
   reset() : void {
     this.initFilter(true);
     this.resetAllCheckboxes(true);
-    this.root.dispatchEvent(this.filterEvent);
+    if (this.root){
+      this.root.dispatchEvent(this.filterEvent);
+    }
+    
   }
 
   resetAllCheckboxes(value: boolean): void {
-    const ul = this.root.querySelector('ul') as HTMLUListElement;
-    ul.childNodes.forEach((li) => {
-      if (li instanceof HTMLLIElement){
-        const checkbox = li.querySelector('input') as HTMLInputElement;
-        checkbox.checked = value;        
-      }
-    });
+    if (this.root){
+      const ul = this.root.querySelector('ul') as HTMLUListElement;
+      ul.childNodes.forEach((li) => {
+        if (li instanceof HTMLLIElement){
+          const checkbox = li.querySelector('input') as HTMLInputElement;
+          checkbox.checked = value;        
+        }
+      });
+    }
   }
 }

@@ -7,7 +7,7 @@ export class Categories extends Component {
 
   constructor() {
     super('Категории');
-    this.initCategories();
+    this.categories = this.initCategories();
   }
 
   construct(): HTMLElement {
@@ -26,10 +26,10 @@ export class Categories extends Component {
 
     this.root = categoriesContainer;
 
-    return super.construct();
+    return this.root;
   }
 
-  initCategories(): void { //todo: from localStorage
+  initCategories(): FilterCategories { //todo: from localStorage
     this.categories = {
       all: true,
       year: true,
@@ -39,6 +39,7 @@ export class Categories extends Component {
       size: true,
       onlyFavorites: true
     }
+    return this.categories;
   }
 
   drawCategories(ul: HTMLUListElement): void {

@@ -3,11 +3,14 @@ import { FilteredShapes } from "../../model/filteredShapes";
 import { AbstractCheckboxFilter } from "./abstractCheckBoxFilter";
 
 export class ShapeFilter extends AbstractCheckboxFilter<FilteredShapes> {
+  filter: FilteredShapes;
+  innerHTML: (k: keyof FilteredShapes, ch: string) => string;
+  enumKeys: Array<keyof FilteredShapes>;
 
   constructor(){
     super('shape');
-    this.initEnumKeys();
-    this.initFilter(true); //temporal
+    this.enumKeys = this.initEnumKeys();
+    this.filter = this.initFilter(true); //temporal
     this.innerHTML = this.drawLiInnerHtml;
   }
 
@@ -15,11 +18,12 @@ export class ShapeFilter extends AbstractCheckboxFilter<FilteredShapes> {
     return super.construct();
   }
 
-  initEnumKeys(): void {
+  initEnumKeys(): Array<keyof FilteredShapes> {
     this.enumKeys = Object.keys(Shape) as Array<keyof FilteredShapes>;
+    return this.enumKeys;
   }
 
-  initFilter(withTrue: boolean): void {
+  initFilter(withTrue: boolean): FilteredShapes {
     if (withTrue) {
       this.filter = {
         bell : true,
@@ -30,6 +34,7 @@ export class ShapeFilter extends AbstractCheckboxFilter<FilteredShapes> {
         figurine : true
       } as FilteredShapes;
     }
+    return this.filter;
   }
 
   drawLiInnerHtml(key: string, checkedString: string): string {

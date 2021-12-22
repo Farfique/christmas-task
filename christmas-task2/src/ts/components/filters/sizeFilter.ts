@@ -4,11 +4,14 @@ import { FilteredSizes } from "../../model/filteredSizes";
 import { AbstractCheckboxFilter } from "./abstractCheckBoxFilter";
 
 export class SizeFilter extends AbstractCheckboxFilter<FilteredSizes> {
+  filter: FilteredSizes;
+  innerHTML: (k: keyof FilteredSizes, ch: string) => string;
+  enumKeys: Array<keyof FilteredSizes>;
 
   constructor(){
     super('size');
-    this.initEnumKeys();
-    this.initFilter(true); //temporal
+    this.enumKeys = this.initEnumKeys();
+    this.filter = this.initFilter(true); //temporal
     this.innerHTML = this.drawLiInnerHtml;
   }
 
@@ -16,11 +19,12 @@ export class SizeFilter extends AbstractCheckboxFilter<FilteredSizes> {
     return super.construct();
   }
 
-  initEnumKeys(): void {
+  initEnumKeys(): Array<keyof FilteredSizes> {
     this.enumKeys = Object.keys(Size) as Array<keyof FilteredSizes>;
+    return this.enumKeys;
   }
 
-  initFilter(withTrue: boolean): void {
+  initFilter(withTrue: boolean): FilteredSizes {
     if (withTrue) {
       this.filter = {
         small: true,
@@ -28,6 +32,7 @@ export class SizeFilter extends AbstractCheckboxFilter<FilteredSizes> {
         big: true
       } as FilteredSizes;
     }
+    return this.filter;
   }
 
   drawLiInnerHtml(key: string, checkedString: string): string {

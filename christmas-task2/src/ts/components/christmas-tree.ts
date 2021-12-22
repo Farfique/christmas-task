@@ -36,7 +36,7 @@ export default class ChristmasTree extends Component {
     this.root.append(rightDiv);
 
 
-    return super.construct();
+    return this.root;
   }
   
 }

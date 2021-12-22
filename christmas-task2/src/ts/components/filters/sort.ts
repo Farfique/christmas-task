@@ -2,8 +2,8 @@ import Component from "../abstractComponent";
 import { Order } from "../../model/enums";
 
 export class Sort extends Component {
-  select: HTMLSelectElement;
-  selectedOption: string;
+  select?: HTMLSelectElement;
+  selectedOption?: string;
   
   constructor(){
     super('Сортировать');
@@ -34,15 +34,20 @@ export class Sort extends Component {
 
     this.subscribe();
 
-    return super.construct();
+    return this.root;
   }
 
   subscribe(): void {
-    this.select.addEventListener('change', () => {
-      let sortEvent = new CustomEvent('sortChange', {bubbles: true, detail: {
-        value: this.select.value
-      }});
-      this.root.dispatchEvent(sortEvent);
-    })
+    if (this.select){
+      this.select.addEventListener('change', () => {
+        if (this.root && this.select){
+          let sortEvent = new CustomEvent('sortChange', {bubbles: true, detail: {
+            value: this.select.value
+          }});
+          this.root.dispatchEvent(sortEvent);
+        }
+      })
+    }
   }
+    
 }

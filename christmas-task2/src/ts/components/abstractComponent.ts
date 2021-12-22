@@ -1,15 +1,13 @@
-export default class Component {
-  root: HTMLElement;
+export default abstract class Component {
+  root?: HTMLElement;
   title: string;
-  displayPreviousState: string;
+  displayPreviousState?: string;
 
   constructor(title = 'No title'){
     this.title = title;
   }
 
-  construct() : HTMLElement { //must create an element and assign to this.root!
-    return this.root;
-  }
+  abstract construct() : HTMLElement;
 
   hide(): void {
     if (this.root){

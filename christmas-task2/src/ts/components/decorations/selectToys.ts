@@ -16,6 +16,6 @@ export class SelectToys extends Component {
     this.root.classList.add('select-toys-container');
     this.root.append(...this.toyCards.map((card) => card.construct()));
 
-    return super.construct();
+    return this.root;
   }
 }

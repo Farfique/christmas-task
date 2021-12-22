@@ -11,7 +11,7 @@ export default class Toys extends Component {
   toysData: Data;
   cards: ToyInfoCard[];
   filteredCards: ToyInfoCard[];
-  cardsContainer: HTMLDivElement;
+  cardsContainer?: HTMLDivElement;
 
   constructor(toysData: Data){
     super();
@@ -45,7 +45,7 @@ export default class Toys extends Component {
     this.cardsContainer.classList.add('toys-container');
 
     this.filteredCards.forEach((card) => {
-      this.cardsContainer.append(card.root);
+      this.cardsContainer!.append(card.root!);
     })
 
     this.root.append(this.cardsContainer);
@@ -53,69 +53,74 @@ export default class Toys extends Component {
     this.subscribe();
 
 
-    return super.construct();
+    return this.root;
   }
 
   subscribe(): void {
     //this.applyFilter.bind(this);
-    this.root.addEventListener('filtersChangeEvent', () => {
-      this.applyFilter();
-    });
+    if (this.root){
+      this.root.addEventListener('filtersChangeEvent', () => {
+        this.applyFilter();
+      });
+    }
   }
 
   applyFilter() : void {
-    this.clearContainer(this.cardsContainer);
-    this.filteredCards = this.cards.filter(card => {
-      return (Object.keys(this.filters.filters) as Array<keyof Filter>).reduce((prev: boolean, filterKey) => {
-        if (!prev){
-          return prev;
-        }
-        let currentValue = prev as boolean;
-        if (this.filters.filters[filterKey] !== null && this.filters.filters[filterKey] !== undefined) {
-          switch (filterKey){
-            case 'str':           
-              currentValue = card.toyInfo.name.toLowerCase().includes(this.filters.filters[filterKey]!.toLowerCase());
-              break;
-            case 'countFrom':
-              currentValue = card.toyInfo.count >= this.filters.filters[filterKey]!;
-              break;
-            case 'countTo':
-              currentValue = card.toyInfo.count <= this.filters.filters[filterKey]!;
-              break;
-            case 'yearFrom': 
-              currentValue = card.toyInfo.year >= this.filters.filters[filterKey]!;
-              break;
-            case 'yearTo':
-              currentValue = card.toyInfo.year <= this.filters.filters[filterKey]!;
-              break;
-            case 'shape':
-              let shape = card.toyInfo.shape;
-              let shapeKey = (Object.keys(Shape) as Array<keyof typeof Shape>).filter(key => Shape[key] == shape)[0];
-              currentValue = this.filters.filters[filterKey]![shapeKey];
-              break;
-            case 'color':
-              let color = card.toyInfo.color;
-              let colorKey = (Object.keys(Color) as Array<keyof typeof Color>).filter(key => Color[key] == color)[0];
-              currentValue = this.filters.filters[filterKey]![colorKey];
-              break;
-            case 'size':
-              let size = card.toyInfo.size;
-              let sizeKey = (Object.keys(Size) as Array<keyof typeof Size>).filter(key => Size[key] == size)[0];
-              currentValue = this.filters.filters[filterKey]![sizeKey];
-              break;
-            case 'onlyFavorites':
-              currentValue = this.filters.filters[filterKey]? card.toyInfo.favorite : true;
-              break;
-
+    if (this.cardsContainer){
+      this.clearContainer(this.cardsContainer);
+      this.filteredCards = this.cards.filter(card => {
+        return (Object.keys(this.filters.filters) as Array<keyof Filter>).reduce((prev: boolean, filterKey) => {
+          if (!prev){
+            return prev;
           }
-        }
-
-        return currentValue? prev: currentValue;                
-      }, true);
-    });
-    this.filteredCards.forEach((card) => {
-      this.cardsContainer.append(card.root);
-    });
+          let currentValue = prev as boolean;
+          if (this.filters.filters[filterKey] !== null && this.filters.filters[filterKey] !== undefined) {
+            switch (filterKey){
+              case 'str':           
+                currentValue = card.toyInfo.name.toLowerCase().includes(this.filters.filters[filterKey]!.toLowerCase());
+                break;
+              case 'countFrom':
+                currentValue = card.toyInfo.count >= this.filters.filters[filterKey]!;
+                break;
+              case 'countTo':
+                currentValue = card.toyInfo.count <= this.filters.filters[filterKey]!;
+                break;
+              case 'yearFrom': 
+                currentValue = card.toyInfo.year >= this.filters.filters[filterKey]!;
+                break;
+              case 'yearTo':
+                currentValue = card.toyInfo.year <= this.filters.filters[filterKey]!;
+                break;
+              case 'shape':
+                let shape = card.toyInfo.shape;
+                let shapeKey = (Object.keys(Shape) as Array<keyof typeof Shape>).filter(key => Shape[key] == shape)[0];
+                currentValue = this.filters.filters[filterKey]![shapeKey];
+                break;
+              case 'color':
+                let color = card.toyInfo.color;
+                let colorKey = (Object.keys(Color) as Array<keyof typeof Color>).filter(key => Color[key] == color)[0];
+                currentValue = this.filters.filters[filterKey]![colorKey];
+                break;
+              case 'size':
+                let size = card.toyInfo.size;
+                let sizeKey = (Object.keys(Size) as Array<keyof typeof Size>).filter(key => Size[key] == size)[0];
+                currentValue = this.filters.filters[filterKey]![sizeKey];
+                break;
+              case 'onlyFavorites':
+                currentValue = this.filters.filters[filterKey]? card.toyInfo.favorite : true;
+                break;
+  
+            }
+          }
+  
+          return currentValue? prev: currentValue;                
+        }, true);
+      });
+      this.filteredCards.forEach((card) => {
+        this.cardsContainer!.append(card.root!);
+      });
+    }
+    
   }
 
   clearContainer(container: HTMLDivElement){

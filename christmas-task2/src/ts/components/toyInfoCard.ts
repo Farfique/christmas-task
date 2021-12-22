@@ -18,7 +18,7 @@ export default class ToyInfoCard extends Component {
     this.root = card;
     this.subscribe();
 
-    return super.construct();
+    return this.root;
   }
 
   innerHtml(): string {
@@ -38,10 +38,12 @@ export default class ToyInfoCard extends Component {
   }
 
   subscribe(): void {
-    const input = this.root.querySelector('.checkbox-favorite') as HTMLInputElement;
-    input.addEventListener('change', () => {
-      this.toyInfo.favorite = input.checked;
-    })
+    if (this.root){
+      const input = this.root.querySelector('.checkbox-favorite') as HTMLInputElement;
+      input.addEventListener('change', () => {
+        this.toyInfo.favorite = input.checked;
+      })
+    }
   }
 
 }

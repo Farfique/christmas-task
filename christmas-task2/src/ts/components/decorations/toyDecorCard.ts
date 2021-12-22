@@ -23,7 +23,7 @@ export class ToyDecorCard extends Component {
 
     this.root.append(count);
 
-    return super.construct();
+    return this.root;
   }
 
   drawImages(): HTMLImageElement[]{

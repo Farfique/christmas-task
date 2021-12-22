@@ -3,11 +3,15 @@ import { FilteredColors } from "../../model/filteredColors";
 import { AbstractCheckboxFilter } from "./abstractCheckBoxFilter";
 
 export class ColorFilter extends AbstractCheckboxFilter<FilteredColors> {
+  filter: FilteredColors;
+  innerHTML: (k: keyof FilteredColors, ch: string) => string;
+  enumKeys: Array<keyof FilteredColors>;
+
 
   constructor(){
     super('color');
-    this.initEnumKeys();
-    this.initFilter(true); //temporal
+    this.enumKeys = this.initEnumKeys();
+    this.filter = this.initFilter(true); //temporal
     this.innerHTML = this.drawLiInnerHtml;
   }
 
@@ -17,7 +21,7 @@ export class ColorFilter extends AbstractCheckboxFilter<FilteredColors> {
     return this.root;
   }
 
-  initFilter(withTrue: boolean): void {
+  initFilter(withTrue: boolean): FilteredColors {
     this.filter = {
       white: true,
       yellow: true,
@@ -25,10 +29,12 @@ export class ColorFilter extends AbstractCheckboxFilter<FilteredColors> {
       blue: true,
       green: true
     }
+    return this.filter;
   }
 
-  initEnumKeys(): void {
+  initEnumKeys(): Array<keyof FilteredColors> {
     this.enumKeys = Object.keys(Color) as Array<keyof FilteredColors>;
+    return this.enumKeys;
   }
 
   drawLiInnerHtml(key: string, checkedString: string): string {
@@ -39,14 +45,16 @@ export class ColorFilter extends AbstractCheckboxFilter<FilteredColors> {
   }
 
   paintDivIcons(){
-    const ul = this.root.querySelector('ul') as HTMLUListElement;
-    ul.childNodes.forEach((li) => {
-      if (li instanceof HTMLLIElement){
-        const checkbox = li.querySelector('input') as HTMLInputElement;
-        const coloredDiv = li.querySelector('.color-icon__color') as HTMLDivElement;
-        coloredDiv.style.backgroundColor = checkbox.value;
-      }
-    });
+    if (this.root){
+      const ul = this.root.querySelector('ul') as HTMLUListElement;
+      ul.childNodes.forEach((li) => {
+        if (li instanceof HTMLLIElement){
+          const checkbox = li.querySelector('input') as HTMLInputElement;
+          const coloredDiv = li.querySelector('.color-icon__color') as HTMLDivElement;
+          coloredDiv.style.backgroundColor = checkbox.value;
+        }
+      });
+    }
   }
 
 }

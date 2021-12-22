@@ -1,4 +1,4 @@
-export default class View {
+export default abstract class View {
   state: 'open' | 'closed';
   initialized: boolean;
   root: HTMLElement;
@@ -6,6 +6,7 @@ export default class View {
   constructor(){
     this.state = 'closed';
     this.initialized = false;
+    this.root = document.createElement('div'); //меня вынудили
   }
 
   initialize() : HTMLElement {

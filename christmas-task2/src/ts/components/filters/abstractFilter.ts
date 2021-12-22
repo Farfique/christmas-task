@@ -1,7 +1,7 @@
 import Component from "../abstractComponent";
 import { FilterCategoriesNames } from "../../model/enums";
 
-export class AbstractFilter extends Component {
+export abstract class AbstractFilter extends Component {
   key: string //same as in Toy type
 
   constructor(key: keyof typeof FilterCategoriesNames){
@@ -9,11 +9,7 @@ export class AbstractFilter extends Component {
     this.key = key;
   }
 
-  construct(): HTMLElement{
-    return super.construct();
-  }
+  abstract construct(): HTMLElement;
 
-  reset(): void {
-
-  }
+  abstract reset(): void;
 }

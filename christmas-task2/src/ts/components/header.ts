@@ -35,7 +35,7 @@ export default class Header extends Component{
 
     this.root = header;
 
-    return super.construct();
+    return this.root;
   }
 
   createMenu(ul : HTMLElement) : void{

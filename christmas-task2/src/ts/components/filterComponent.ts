@@ -18,7 +18,6 @@ import ToyInfoCard from "./toyInfoCard";
 
 export class FiltersComponent extends Component {
   filters: Filter;
-  filteredCards: ToyInfoCard[];
   categories: Categories;
   search: Search;
   sort: Sort;
@@ -32,12 +31,12 @@ export class FiltersComponent extends Component {
     onlyFavorites: FavoritesFilter
   }
   filtersChangeEvent: CustomEvent;
-  buttonReset: HTMLButtonElement;
+  buttonReset?: HTMLButtonElement;
 
 
   constructor(toysData: Data){
     super();
-    this.initFiltersObj();
+    this.filters = this.initFiltersObj();
     this.toysData = toysData;
     this.filtersChangeEvent = new CustomEvent('filtersChangeEvent', {bubbles: true});
     this.search = new Search();
@@ -74,11 +73,12 @@ export class FiltersComponent extends Component {
     this.subscribe();
 
     
-    return super.construct();
+    return this.root;
   }
 
-  initFiltersObj(): void{
+  initFiltersObj(): Filter{
     this.filters = {};
+    return this.filters;
   }
 
   drawButtonReset(): HTMLButtonElement {
@@ -100,46 +100,49 @@ export class FiltersComponent extends Component {
   }
 
   subscribe(): void {
-    this.root.addEventListener('categoriesChangeEvent', ((event: CustomEvent) => {
-      this.updateFilters();
-    }) as (e: Event) => void);
-    this.root.addEventListener('searchChange', ((event: CustomEvent) => {
-      if (event.detail.value !== ""){
-        this.filters.str = event.detail.value;
-      }
-      else {
-        this.filters.str = undefined;
-      }
-      this.root.dispatchEvent(this.filtersChangeEvent);      
-    }) as (e: Event) => void);
-    this.root.addEventListener('sortChange', ((event: CustomEvent) => {
-    }) as (e: Event) => void);
-    this.root.addEventListener('countSliderChange', ((event: CustomEvent) => {
-      this.filters.countFrom = event.detail.value[0];
-      this.filters.countTo = event.detail.value[1];
-      this.root.dispatchEvent(this.filtersChangeEvent);   
-    }) as (e: Event) => void);
-    this.root.addEventListener('yearSliderChange', ((event: CustomEvent) => {
-      this.filters.yearFrom = event.detail.value[0];
-      this.filters.yearTo = event.detail.value[1];
-      this.root.dispatchEvent(this.filtersChangeEvent);   
-    }) as (e: Event) => void);
-    this.root.addEventListener('shapeFilterEvent', () => {
-      this.filters.shape = this.filterComponentsObject.shape.filter as FilteredShapes;
-      this.root.dispatchEvent(this.filtersChangeEvent);
-    });
-    this.root.addEventListener('colorFilterEvent', () => {
-      this.filters.color = this.filterComponentsObject.color.filter as FilteredColors;
-      this.root.dispatchEvent(this.filtersChangeEvent);
-    });
-    this.root.addEventListener('sizeFilterEvent', () => {
-      this.filters.size = this.filterComponentsObject.size.filter as FilteredSizes;
-      this.root.dispatchEvent(this.filtersChangeEvent);
-    });
-    this.root.addEventListener('favoritesFilterEvent', () => {
-      this.filters.onlyFavorites = this.filterComponentsObject.onlyFavorites.filter as boolean;
-      this.root.dispatchEvent(this.filtersChangeEvent);
-    });
+    if (this.root){
+      this.root.addEventListener('categoriesChangeEvent', ((event: CustomEvent) => {
+        this.updateFilters();
+      }) as (e: Event) => void);
+      this.root.addEventListener('searchChange', ((event: CustomEvent) => {
+        if (event.detail.value !== ""){
+          this.filters.str = event.detail.value;
+        }
+        else {
+          this.filters.str = undefined;
+        }
+        this.root!.dispatchEvent(this.filtersChangeEvent);      
+      }) as (e: Event) => void);
+      this.root.addEventListener('sortChange', ((event: CustomEvent) => {
+      }) as (e: Event) => void);
+      this.root.addEventListener('countSliderChange', ((event: CustomEvent) => {
+        this.filters.countFrom = event.detail.value[0];
+        this.filters.countTo = event.detail.value[1];
+        this.root!.dispatchEvent(this.filtersChangeEvent);   
+      }) as (e: Event) => void);
+      this.root.addEventListener('yearSliderChange', ((event: CustomEvent) => {
+        this.filters.yearFrom = event.detail.value[0];
+        this.filters.yearTo = event.detail.value[1];
+        this.root!.dispatchEvent(this.filtersChangeEvent);   
+      }) as (e: Event) => void);
+      this.root.addEventListener('shapeFilterEvent', () => {
+        this.filters.shape = this.filterComponentsObject.shape.filter as FilteredShapes;
+        this.root!.dispatchEvent(this.filtersChangeEvent);
+      });
+      this.root.addEventListener('colorFilterEvent', () => {
+        this.filters.color = this.filterComponentsObject.color.filter as FilteredColors;
+        this.root!.dispatchEvent(this.filtersChangeEvent);
+      });
+      this.root.addEventListener('sizeFilterEvent', () => {
+        this.filters.size = this.filterComponentsObject.size.filter as FilteredSizes;
+        this.root!.dispatchEvent(this.filtersChangeEvent);
+      });
+      this.root.addEventListener('favoritesFilterEvent', () => {
+        this.filters.onlyFavorites = this.filterComponentsObject.onlyFavorites.filter as boolean;
+        this.root!.dispatchEvent(this.filtersChangeEvent);
+      });
+    }
+    
   }
 
   updateFilters(){

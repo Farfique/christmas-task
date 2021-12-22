@@ -5,7 +5,7 @@ import WelcomeView from "./views/welcomeView";
 class App {
   root: HTMLElement;
   welcomeView : WelcomeView;
-  gameView : GameView;
+  gameView?: GameView;
   data: Data;
 
   constructor(){
@@ -20,7 +20,7 @@ class App {
     this.gameView = new GameView(this.data);    
     this.root.append(this.welcomeView.initialize());
     this.welcomeView.subscribe((e) => {      
-      this.root.append(this.gameView.initialize());
+      this.root.append(this.gameView!.initialize());
       this.welcomeView.close();
     })
   }

@@ -2,19 +2,23 @@ import { AbstractFilter } from "./abstractFilter";
 
 export class FavoritesFilter extends AbstractFilter {
   filter: boolean;
-  checkbox: HTMLInputElement;
+  checkbox?: HTMLInputElement;
   filterEvent: CustomEvent;
 
   constructor(){
     super('onlyFavorites');
-    this.initFilter(false);
+    this.filter = this.initFilter(false);
     this.filterEvent = new CustomEvent(`favoritesFilterEvent`, {bubbles: true});
   }
 
-  initFilter(withTrue? : boolean): void {
+  initFilter(withTrue: boolean): boolean {
     if (!withTrue){
       this.filter = false;
     }
+    else {
+      this.filter = true;
+    }
+    return this.filter;
   }
 
   construct(): HTMLElement{
@@ -35,7 +39,7 @@ export class FavoritesFilter extends AbstractFilter {
 
     this.root.append(title, labelContainer);
 
-    return super.construct();
+    return this.root;
   }
 
   drawLabel(key: string, checkedString: string): string {
@@ -47,14 +51,19 @@ export class FavoritesFilter extends AbstractFilter {
 
   reset() : void {
     this.initFilter(false);
-    this.checkbox.checked = false;
-    this.root.dispatchEvent(this.filterEvent);
+    if (this.root && this.checkbox){
+      this.checkbox.checked = false;
+      this.root.dispatchEvent(this.filterEvent);
+    }
   }
 
   subscribe(): void {
-    this.checkbox.addEventListener('change', () => {
-      this.filter = this.checkbox.checked;
-      this.root.dispatchEvent(this.filterEvent);
-    })
+   if (this.checkbox){
+      this.checkbox.addEventListener('change', () => {
+        if (this.root && this.checkbox){
+          this.filter = this.checkbox.checked;
+          this.root.dispatchEvent(this.filterEvent);}
+      })
+   }
   }
 }
