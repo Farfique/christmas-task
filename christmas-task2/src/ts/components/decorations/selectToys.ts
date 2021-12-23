@@ -6,7 +6,7 @@ export class SelectToys extends Component {
   toyCards: ToyDecorCard[];
 
   constructor(toys: Toy[]){
-    super();
+    super('Игрушки');
     this.toyCards = [];
     toys.forEach((toy) => this.toyCards.push(new ToyDecorCard(toy)));
   }
@@ -14,7 +14,17 @@ export class SelectToys extends Component {
   construct() : HTMLElement {
     this.root = document.createElement('div');
     this.root.classList.add('select-toys-container');
-    this.root.append(...this.toyCards.map((card) => card.construct()));
+
+    const title = document.createElement('h2');
+    title.classList.add('select-toys-container__title', 'h2-font');
+    title.innerText = this.title;
+    this.root.append(title);
+
+    const div = document.createElement('div');
+    div.classList.add('select-toys-container__div', 'select-cards-container');
+
+    div.append(...this.toyCards.map((card) => card.construct()));
+    this.root.append(div);
 
     return this.root;
   }

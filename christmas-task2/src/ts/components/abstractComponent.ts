@@ -20,7 +20,8 @@ export default abstract class Component {
 
   show() : void {
     if (this.root){
-      this.root.style.display = this.displayPreviousState? this.displayPreviousState : 'block';
+      //this.root.style.display = this.displayPreviousState? this.displayPreviousState : '';
+      this.root.style.display = '';
     }    
   }
 }

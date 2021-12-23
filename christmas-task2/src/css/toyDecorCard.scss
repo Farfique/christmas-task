@@ -18,20 +18,12 @@
 .toy-decor-card__number-left {
   @include text;
   position: absolute;
-  left: 15px;
-  bottom: 15px;
+  z-index: 11;
+  right: 5px;
+  bottom: 5px;
   width: 22px;
   height: 19px;
   border-radius: 10px;
   background-color: #24c5db;
-
-}
-
-.select-toys-container {
-  width: 344px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
+  text-align: center;
 }

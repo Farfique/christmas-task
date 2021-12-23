@@ -19,6 +19,7 @@ export default class Game extends View {
 
   initialize() : HTMLElement {
     this.root = document.createElement('div');
+    this.root.classList.add('game-view-container');
     this.root.append(this.header.construct());
     this.root.append(this.toys.construct());
     this.root.append(this.xmasTree.construct());

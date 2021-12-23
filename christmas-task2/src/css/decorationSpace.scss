@@ -1,12 +1,18 @@
 .decoration-space-container {
+  flex-grow: 1;
   position: relative;
-  width: 500px;
-  height: 500px;
+  max-width: 1095px;
+  height: calc(100vh - 200px);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .decoration-space__tree {
-  position: absolute;
+  height: 67%;
+  margin-bottom: 20px;
 }

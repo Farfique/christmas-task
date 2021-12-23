@@ -1,0 +1,43 @@
+.christmas-tree-main{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 0;
+}
+
+.christmas-tree__left-section{
+  width: 384px;
+  height: calc(100vh - 200px);
+}
+
+.christmas-tree__right-section {
+  width: 440px;
+  height: calc(100vh - 200px);
+}
+
+.select-trees-container__title,
+.select-toys-container__title{
+  margin-bottom: 15px;
+}
+
+.select-cards-container {
+ 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.select-trees-container,
+.select-trees-container__div{
+  width: 284px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.select-toys-container,
+.select-toys-container__div {
+  width: 344px;
+  margin-right: auto;
+  margin-left: auto;
+}
