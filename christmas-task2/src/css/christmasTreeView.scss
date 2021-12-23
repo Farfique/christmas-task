@@ -8,6 +8,9 @@
 .christmas-tree__left-section{
   width: 384px;
   height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .christmas-tree__right-section {
@@ -16,7 +19,8 @@
 }
 
 .select-trees-container__title,
-.select-toys-container__title{
+.select-toys-container__title,
+.select-bgrs-container__title {
   margin-bottom: 15px;
 }
 
@@ -24,13 +28,15 @@
  
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 8px;
 }
 
 .select-trees-container,
-.select-trees-container__div{
+.select-trees-container__div,
+.select-bgrs-container,
+.select-bgrs-container__div {
   width: 284px;
   margin-right: auto;
   margin-left: auto;

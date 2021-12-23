@@ -5,12 +5,14 @@ import { DecorationSpace } from "./decorations/decorationSpace";
 import { SelectToys } from "./decorations/selectToys";
 import Settings from "../model/settings";
 import { SelectTree } from "./decorations/selectTree";
+import { SelectBackground } from "./decorations/selectBackground";
 
 export default class ChristmasTree extends Component {
   toys: Toy[];
   decorationSpace: DecorationSpace;
   selectToys: SelectToys;
   selectTree: SelectTree;
+  selectBackground: SelectBackground;
   
   constructor(toysData: Data) {
     super();
@@ -24,6 +26,7 @@ export default class ChristmasTree extends Component {
 
     this.selectToys = new SelectToys(toysToSelect);
     this.selectTree = new SelectTree();
+    this.selectBackground = new SelectBackground();
   }
 
   construct(): HTMLElement {
@@ -32,7 +35,7 @@ export default class ChristmasTree extends Component {
 
     const leftDiv = document.createElement('div');
     leftDiv.classList.add('christmas-tree__left-section');
-    leftDiv.append(this.selectTree.construct());
+    leftDiv.append(this.selectTree.construct(), this.selectBackground.construct());
     this.root.append(leftDiv);
 
     this.root.append(this.decorationSpace.construct());
@@ -55,6 +58,9 @@ export default class ChristmasTree extends Component {
   subscribe(): void {
     this.root?.addEventListener('selectedTreeEvent', () => {
       this.decorationSpace.changeTree(this.selectTree.selectedTree);
+    });
+    this.root?.addEventListener('selectBackgroundEvent', () => {
+      this.decorationSpace.changeBackground(this.selectBackground.selectedBackground);
     })
   }
   
