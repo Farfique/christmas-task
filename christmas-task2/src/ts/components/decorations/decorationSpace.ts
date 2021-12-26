@@ -93,5 +93,28 @@ export class DecorationSpace extends Component {
       event.preventDefault();
       console.log("dragover detected");
     };
+    document.ondragover = (event) => {
+      if (event.defaultPrevented) return;
+      event.preventDefault();
+      console.log("other dragover");
+    }
+    document.ondrop = (event) => {
+      if (event.defaultPrevented) return;
+      event.preventDefault();
+      const data = event.dataTransfer?.getData("text");
+      if (data && document.getElementById(data)){
+        const dropped = document.getElementById(data) as HTMLElement;
+        const home = document.getElementById(data.split('_')[0]) as HTMLElement;
+        if (home){
+          dropped.style.left = "";
+          dropped.style.top = "";
+          home.append(dropped);
+          const returnHomeEvent= new CustomEvent('returnHomeEvent', {bubbles: true});
+          home.dispatchEvent(returnHomeEvent);
+        }
+      }
+
+      console.log("other drop");
+    }
   }
 }
