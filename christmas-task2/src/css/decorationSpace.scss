@@ -15,4 +15,23 @@
 .decoration-space__tree {
   height: 67%;
   margin-bottom: 20px;
+  position: relative;
+}
+
+.decoration-space__svg{
+  position: relative;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.decoration-space__image{
+  height: 100%;
+}
+
+.decoration-space__polygon {
+  opacity: 0;
 }

@@ -1,4 +1,6 @@
 export type Tree = {
   num: number,
-  coords: string
+  points: string,
+  width: number,
+  height: number
 }

@@ -28,4 +28,8 @@ export class SelectToys extends Component {
 
     return this.root;
   }
+
+  subscribe(): void {
+    
+  }
 }
