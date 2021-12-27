@@ -56,13 +56,10 @@ export class SelectGarland extends Component {
     let radioButtons = this.root?.querySelectorAll('input[name=select-garland]') as NodeListOf<HTMLInputElement>;
     for (let button of radioButtons){
       button.addEventListener('change', () => {
-        console.log("value of radio btn has changed, garland checked = ", button.value);
         this.selectedGarland = button.value as keyof typeof Garland;
-        console.log("selected garland = ", this.selectedGarland);
         this.root?.dispatchEvent(this.selectGarlandEvent);
       })
     }
-    
   }
 }
 

@@ -51,12 +51,8 @@ export default class Header extends Component{
       itemLink.addEventListener('click', (e) => {
         e.preventDefault();
         let target = e.target as HTMLElement;
-        console.log("you clicked on ", target.textContent);
-
-        
 
         for (let item of this.menu) {
-          console.log("item title = ", item.title);
           if ( item.title !== target.textContent){
             item.hide();
           }
@@ -64,15 +60,11 @@ export default class Header extends Component{
             item.show();
           }
         }      
-
       });
-
 
       listItem.append(itemLink);
 
       ul.append(listItem);
-
     }
   }
-
 }

@@ -46,12 +46,10 @@ export class ToyDecorCard extends Component {
     return arr;
   }
 
-  //TODO subscribe to drop and move back
   subscribe(){
     const imgArray = this.root?.querySelectorAll('.toy-decor-card__image') as NodeListOf<HTMLImageElement>;
     for (let img of imgArray){
       img.ondragstart = (event) => {
-        console.log("dragstart detected");
         const target = event.target as HTMLElement;
         event.dataTransfer?.setData("text", target.id);
         event.dataTransfer?.setData('shiftx', "" + (event.clientX - target.getBoundingClientRect()?.left));
@@ -60,15 +58,11 @@ export class ToyDecorCard extends Component {
         if (img.parentNode === this.root){
           this.countElement.innerText = "" + (--this.amountLeft);
         }
-        
       };
     };
 
     this.root?.addEventListener('returnHomeEvent', (event) => {
-      console.log("returnHomeevent target: ", event.target);
       this.countElement.innerText = "" + (++this.amountLeft);
     });
   }
-
-
 }

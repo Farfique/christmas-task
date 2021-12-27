@@ -89,39 +89,35 @@ export class DecorationSpace extends Component {
     const polygon = this.root?.querySelector('polygon') as SVGPolygonElement;
     polygon.ondrop = (event) => {
       event.preventDefault();
-      console.log("drop detected");
       const data = event.dataTransfer?.getData("text");
       if (data && document.getElementById(data)){
         const dropped = document.getElementById(data) as HTMLElement;
        
         const rectX = this.root?.getBoundingClientRect()?.x;
         const rectY = this.root?.getBoundingClientRect()?.y;
-        console.log("top rect: ", rectY, "left rect:", rectX);
+
         const eventX = event.clientX;
         const eventY = event.clientY;
-        console.log("eventX: ", eventX, "eventY:", eventY);
+
         const shiftX = event.dataTransfer?.getData("shiftx");
         let shiftXNumber = shiftX? +shiftX : 0;
         const shiftY = event.dataTransfer?.getData("shifty");
         let shiftYNumber = shiftY? +shiftY : 0;
 
-
         dropped.style.left = "" + (eventX - rectX! - shiftXNumber) + "px";
 
         dropped.style.top = "" + (eventY - rectY! - shiftYNumber) + "px";
-        console.log("top: ", dropped.style.top, "left:", dropped.style.left);
+
         this.root?.append(dropped);
       }
       
     };
     polygon.ondragover = (event) => {
       event.preventDefault();
-      console.log("dragover detected");
     };
     document.ondragover = (event) => {
       if (event.defaultPrevented) return;
       event.preventDefault();
-      console.log("other dragover");
     }
     document.ondrop = (event) => {
       if (event.defaultPrevented) return;
@@ -138,8 +134,6 @@ export class DecorationSpace extends Component {
           home.dispatchEvent(returnHomeEvent);
         }
       }
-
-      console.log("other drop");
     }
   }
 }

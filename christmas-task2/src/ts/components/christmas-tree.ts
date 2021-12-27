@@ -69,5 +69,12 @@ export default class ChristmasTree extends Component {
       this.decorationSpace.changeGarland(this.selectGarland.selectedGarland);
     })
   }
+
+  redrawSelectToys(): void {
+    let toysToSelect = this.toys.filter((toy) => toy.favorite);
+    toysToSelect = toysToSelect.length > 0? toysToSelect : this.toys.slice(0, Settings.maxFavoritesNumber);
+
+    this.selectToys.redrawToys(toysToSelect);
+  }
   
 }

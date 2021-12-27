@@ -141,6 +141,9 @@ export class FiltersComponent extends Component {
         this.filters.onlyFavorites = this.filterComponentsObject.onlyFavorites.filter as boolean;
         this.root!.dispatchEvent(this.filtersChangeEvent);
       });
+      this.root.addEventListener('changeFavoriteToyEvent', (event) => {
+          this.root?.dispatchEvent(event);
+      })
     }
     
   }

@@ -3,10 +3,12 @@ import Component from "./abstractComponent";
 
 export default class ToyInfoCard extends Component {
   toyInfo: Toy;
+  changeFavoriteToyEvent: CustomEvent;
 
   constructor(info: Toy){
     super();
     this.toyInfo = info;
+    this.changeFavoriteToyEvent = new CustomEvent('changeFavoriteToyEvent', {bubbles: true});
   }
 
   construct(){
@@ -42,6 +44,7 @@ export default class ToyInfoCard extends Component {
       const input = this.root.querySelector('.checkbox-favorite') as HTMLInputElement;
       input.addEventListener('change', () => {
         this.toyInfo.favorite = input.checked;
+        this.root?.dispatchEvent(this.changeFavoriteToyEvent);
       })
     }
   }

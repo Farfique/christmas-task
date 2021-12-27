@@ -61,13 +61,10 @@ export class SelectTree extends Component {
     let radioButtons = this.root?.querySelectorAll('input[name=select-trees]') as NodeListOf<HTMLInputElement>;
     for (let button of radioButtons){
       button.addEventListener('change', () => {
-        console.log("value of radio btn has changed, tree checked = ", button.value);
         this.selectedTree = Trees[+button.value - 1];
-        console.log("selected tree = ", this.selectedTree);
         this.root?.dispatchEvent(this.selectTreeEvent);
       })
     }
-    
   }
 }
 

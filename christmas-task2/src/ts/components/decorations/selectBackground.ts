@@ -62,9 +62,7 @@ export class SelectBackground extends Component {
     let radioButtons = this.root?.querySelectorAll('input[name=select-bgrs]') as NodeListOf<HTMLInputElement>;
     for (let button of radioButtons){
       button.addEventListener('change', () => {
-        console.log("value of radio btn has changed, bgr checked = ", button.value);
         this.selectedBackground = this.backgrounds[+button.value - 1];
-        console.log("selected background = ", this.selectedBackground);
         this.root?.dispatchEvent(this.selectBackgroundEvent);
       })
     }

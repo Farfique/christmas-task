@@ -8,7 +8,7 @@ import { Data } from "../model/data";
 export default class Game extends View {
   header: Component;
   toys: Component;
-  xmasTree: Component;
+  xmasTree: ChristmasTree;
 
   constructor(toysData: Data) {
     super();
@@ -25,7 +25,15 @@ export default class Game extends View {
     this.root.append(this.xmasTree.construct());
     this.xmasTree.hide();
 
+    this.subscribe();
+
     return super.initialize();
+  }
+
+  subscribe(): void {
+    this.root.addEventListener('changeFavoriteToyEvent', () => {
+      this.xmasTree.redrawSelectToys();
+    })
   }
 
 }
