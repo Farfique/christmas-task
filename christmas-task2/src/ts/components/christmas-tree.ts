@@ -6,6 +6,7 @@ import { SelectToys } from "./decorations/selectToys";
 import Settings from "../model/settings";
 import { SelectTree } from "./decorations/selectTree";
 import { SelectBackground } from "./decorations/selectBackground";
+import { SelectGarland } from "./decorations/selectGarland";
 
 export default class ChristmasTree extends Component {
   toys: Toy[];
@@ -13,6 +14,7 @@ export default class ChristmasTree extends Component {
   selectToys: SelectToys;
   selectTree: SelectTree;
   selectBackground: SelectBackground;
+  selectGarland: SelectGarland;
   
   constructor(toysData: Data) {
     super();
@@ -27,6 +29,7 @@ export default class ChristmasTree extends Component {
     this.selectToys = new SelectToys(toysToSelect);
     this.selectTree = new SelectTree();
     this.selectBackground = new SelectBackground();
+    this.selectGarland = new SelectGarland();
   }
 
   construct(): HTMLElement {
@@ -35,7 +38,7 @@ export default class ChristmasTree extends Component {
 
     const leftDiv = document.createElement('div');
     leftDiv.classList.add('christmas-tree__left-section');
-    leftDiv.append(this.selectTree.construct(), this.selectBackground.construct());
+    leftDiv.append(this.selectTree.construct(), this.selectBackground.construct(), this.selectGarland.construct());
     this.root.append(leftDiv);
 
     this.root.append(this.decorationSpace.construct());
@@ -61,6 +64,9 @@ export default class ChristmasTree extends Component {
     });
     this.root?.addEventListener('selectBackgroundEvent', () => {
       this.decorationSpace.changeBackground(this.selectBackground.selectedBackground);
+    });
+    this.root?.addEventListener('selectGarlandEvent', () => {
+      this.decorationSpace.changeGarland(this.selectGarland.selectedGarland);
     })
   }
   

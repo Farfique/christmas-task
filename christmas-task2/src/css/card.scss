@@ -8,3 +8,13 @@
   overflow: hidden;
 
 }
+
+.card:hover {
+  box-shadow: 0px 4px 10px 4px rgba(31, 133, 194, 0.53);
+  cursor: pointer;
+}
+
+.card:active {
+  box-shadow: 0px 4px 10px 1px rgba(31, 133, 194, 0.53);
+  cursor: pointer;
+}

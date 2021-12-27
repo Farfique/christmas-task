@@ -1,0 +1,141 @@
+.decoration-space__garland-container {
+  position: absolute;
+  z-index: 9;
+  height: 65%;
+  width: 37%;
+  max-width: 200px;
+}
+
+.garland-container__ball {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 0;
+}
+
+.garland-ball-1{
+  position:absolute;
+  top: 15px;
+  left: calc(50% - 7px);
+}
+.garland-ball-2{
+  position:absolute;
+  top: 12%;
+  left: calc(55% - 7px);
+}
+.garland-ball-3{
+  position:absolute;
+  top: 20%;
+  left: calc(42% - 7px);
+}
+.garland-ball-4{
+  position:absolute;
+  top: 30%;
+  left: calc(64% - 7px);
+
+}
+.garland-ball-5{
+  position:absolute;
+  top: 43%;
+  left: calc(50% - 7px);
+}
+.garland-ball-6{
+  position:absolute;
+  top: 49%;
+  left: calc(30% - 7px);
+}
+.garland-ball-7{
+  position:absolute;
+  top: 60%;
+  left: calc(80% - 7px);
+}
+.garland-ball-8{
+  position:absolute;
+  top: 73%;
+  left: calc(50% - 7px);
+}
+.garland-ball-9{
+  position:absolute;
+  top: 80%;
+  left: calc(13% + 7px);
+}
+
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  20% {opacity: 0.9}
+  100% { opacity: 0.2; }
+}
+
+@mixin flicker-animation {
+  animation: flicker;
+  animation-timing-function: ease-out;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+}
+
+.garland-color-none .garland-container__ball{
+  background-color: transparent;
+}
+
+.garland-color-white .garland-container__ball{
+  $background-color: white;
+  background: radial-gradient($background-color, transparent);
+  @include flicker-animation;
+}
+
+.garland-color-yellow .garland-container__ball{
+  $background-color: yellow;
+  background: radial-gradient($background-color, transparent);
+  @include flicker-animation;
+}
+
+.garland-color-red .garland-container__ball{
+  $background-color: red;
+  background: radial-gradient($background-color, transparent);
+  @include flicker-animation;
+
+}
+
+.garland-color-pink .garland-container__ball{
+  $background-color: pink;
+  background: radial-gradient($background-color, transparent);
+  @include flicker-animation;
+}
+
+.garland-color-blue .garland-container__ball{
+  $background-color: blue;
+  background: radial-gradient($background-color, transparent);
+  @include flicker-animation;
+}
+
+.garland-color-multicolor {
+  .garland-ball-1,
+  .garland-ball-4,
+  .garland-ball-6 {
+    $background-color: yellow;
+    background: radial-gradient($background-color, transparent);
+    @include flicker-animation;
+    animation-duration: 0.5s;
+  }
+  .garland-ball-3,
+  .garland-ball-7,
+  .garland-ball-9 {
+    $background-color: red;
+    background: radial-gradient($background-color, transparent);
+    @include flicker-animation;
+    animation-delay: 200ms;
+    animation-duration: 0.5s;
+  }
+
+  .garland-ball-2,
+  .garland-ball-5,
+  .garland-ball-8 {
+    $background-color: white;
+    background: radial-gradient($background-color, transparent);
+    @include flicker-animation;
+    animation-delay: 100ms;
+    animation-duration: 0.5s;
+  }
+}

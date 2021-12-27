@@ -11,6 +11,11 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow-y: scroll;
+}
+
+.christmas-tree__left-section::-webkit-scrollbar {
+  display: none;
 }
 
 .christmas-tree__right-section {
@@ -18,6 +23,7 @@
   height: calc(100vh - 200px);
 }
 
+.select-garland-container__title,
 .select-trees-container__title,
 .select-toys-container__title,
 .select-bgrs-container__title {
@@ -33,6 +39,8 @@
   gap: 8px;
 }
 
+.select-garland-container,
+.select-garland-container__div,
 .select-trees-container,
 .select-trees-container__div,
 .select-bgrs-container,

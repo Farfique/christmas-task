@@ -1,0 +1,47 @@
+.garland-card-label {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 65px;
+}
+
+.garland-card-label__circle{
+  content: "";
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  border: 2px solid rgb(68 198 220 / 62%);
+}
+
+.garland-card-none {
+  background-color: transparent;
+}
+
+.garland-card-white {
+  background-color: white;
+
+}
+
+.garland-card-yellow {
+  background-color: yellow;
+
+}
+
+.garland-card-red {
+  background-color: red;
+
+}
+
+.garland-card-pink {
+  background-color: pink;
+}
+
+.garland-card-blue {
+  background-color: blue;
+}
+
+.garland-card-multicolor {
+  background: conic-gradient(from 180deg at 50% 50%, #F31919 0deg, #DFE311 71.26deg, #15CE54 163.15deg, #539CE0 262.53deg, #EB1717 354.41deg, #F31919 360deg);
+}

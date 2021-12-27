@@ -1,6 +1,7 @@
 import { Tree } from "../../model/tree";
 import Component from "../abstractComponent"
 import { Trees } from "../../data/trees";
+import { Garland } from "../../model/enums";
 
 export class DecorationSpace extends Component {
   constructor(){
@@ -16,7 +17,7 @@ export class DecorationSpace extends Component {
       this.root!.style.backgroundImage = 'url("' + bgrImage.src + '")';
     }
     
-    this.root.append(this.drawTree(Trees[0]));
+    this.root.append(this.drawGarland("none", this.drawTree(Trees[0])));
 
     this.subscribe();
 
@@ -47,6 +48,17 @@ export class DecorationSpace extends Component {
     }
   }
 
+  changeGarland(key: keyof typeof Garland): void {
+      const tree = this.root?.querySelector('.decoration-space__tree') as HTMLElement;
+      const regex = /garland-color-[\w]*/i;
+      for (let i = 0; i < tree.classList.length; i++){
+        if (regex.test(tree.classList[i])){
+          tree.classList.remove(tree.classList[i]);
+        }
+      }
+      tree.classList.add(`garland-color-${key}`);
+  }
+
   drawTree(tree: Tree): HTMLElement {
     const figure = document.createElement('div') as HTMLElement;
     figure.classList.add("decoration-space__tree");
@@ -57,6 +69,19 @@ export class DecorationSpace extends Component {
     <polygon class="decoration-space__polygon" preserveAspectRatio="XmidYmid meet" points="${tree.points}"/>
     </svg>`;
     return figure;
+  }
+
+  drawGarland(type: keyof typeof Garland, container: HTMLElement): HTMLElement {
+
+    container.classList.add(`garland-color-${type}`);
+
+    for (let i = 1; i <= 9; i++){
+      let ball = document.createElement('div') as HTMLElement;
+      ball.classList.add('garland-container__ball', `garland-ball-${i}`);
+      container.append(ball);
+    }
+
+    return container;
   }
 
 

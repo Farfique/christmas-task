@@ -6,6 +6,15 @@
   height: 80px;
 }
 
+.toy-decor-card:hover {
+  box-shadow: none;
+  cursor: initial;
+}
+.toy-decor-card:active {
+  box-shadow: none;
+  cursor: initial;
+}
+
 .toy-decor-card__image {
   position: absolute;
   width: 60px;

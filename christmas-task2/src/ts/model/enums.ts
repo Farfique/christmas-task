@@ -38,3 +38,12 @@ export enum FilterCategoriesNames {
   onlyFavorites = 'Только любимые' 
 }
 
+export enum Garland {
+  none = "none",
+  white = "white",
+  yellow = "yellow",
+  pink = "pink",
+  blue = "blue",
+  red = "red",
+  multicolor = "multicolor"
+}
