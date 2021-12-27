@@ -27,6 +27,14 @@ initialize(): HTMLElement {
 
   this.root = main;
 
+  const ball1 = this.drawBall();
+  ball1.classList.add("ball-container-big");
+
+  const ball2 = this.drawBall();
+  ball2.classList.add("ball-container-small");
+
+  this.root.append(ball1, ball2);
+
   return super.initialize();
 }
 
@@ -36,6 +44,26 @@ subscribe(callback: (e: Event) => void): void {
       callback(event);
     }   
   });
+}
+
+drawBall(): HTMLElement {
+  const ballContainer = document.createElement('div') as HTMLDivElement;
+  ballContainer.classList.add('ball-container');
+
+  const thread = document.createElement('div') as HTMLDivElement;
+  thread.classList.add('ball-thread');
+  
+
+  const img = new Image();
+  img.src = "./assets/ball/1.png";
+  img.onload = () => {
+    const ball = document.createElement('img');
+    ball.classList.add('ball-image');
+    ball.src = img.src;
+    ball.alt = "";
+    ballContainer.append(thread, ball);
+  }
+  return ballContainer;
 }
 
 
